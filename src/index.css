@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Poppins:wght@300;400&display=swap');
+@import "tailwindcss";
+
+:root {
+  --page-cream: #FBF8F2;
+  --section-cream: #F3EFE7;
+  --card-neutral: #F2F0E4;
+  --hairline: #E6DFD3;
+  --blush-start: #E4CEB7;
+  --blush-end: #E1CFB9;
+  --clay: #96694A;
+  --clay-deep: #7A5C47;
+  --walnut: #453425;
+  --stone-text: #5B5145;
+  --muted: #A2A19D;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 30px;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Poppins', sans-serif;
+  
+  --shadow-card: 0 8px 32px rgba(91, 81, 69, 0.04);
+  --shadow-hover: 0 16px 48px rgba(91, 81, 69, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html {
+  font-size: 16px; /* Base font size for REM scaling */
+}
+
+body {
+  background-color: var(--page-cream);
+  color: var(--walnut);
+  font-family: var(--font-body);
+  line-height: 1.7; /* Breathable body line-height */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 
+  Typography: Major Third (1.25) Scale
+  h6: 1.25rem
+  h5: 1.563rem
+  h4: 1.953rem
+  h3: 2.441rem
+  h2: 3.052rem
+  h1: 3.815rem
+*/
+h1, h2, h3, h4, h5, h6 {
+  color: var(--clay-deep);
+  font-weight: 500;
+  font-family: var(--font-display);
+  line-height: 1.1;
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 3.815rem); letter-spacing: 0.02em; }
+h2 { font-size: clamp(2rem, 4vw, 3.052rem); letter-spacing: 0.015em; }
+h3 { font-size: clamp(1.75rem, 3vw, 2.441rem); letter-spacing: 0.01em; }
+h4 { font-size: clamp(1.5rem, 2.5vw, 1.953rem); }
+h5 { font-size: clamp(1.25rem, 2vw, 1.563rem); }
+h6 { font-size: clamp(1.125rem, 1.5vw, 1.25rem); }
+
+p {
+  font-size: 14px;
+  color: var(--stone-text);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Glassmorphism Navbar */
+.glass-header {
+  background: rgba(251, 248, 242, 0.88); /* Page cream slightly transparent */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hairline);
+  transition: all 0.3s ease;
+}
+
+/* Layout: 8-Point System (Multiples of 8px) */
+.section-wrapper {
+  padding-top: 128px;    /* 16 * 8px */
+  padding-bottom: 128px; /* 16 * 8px */
+  padding-left: 64px;    /* 8 * 8px */
+  padding-right: 64px;   /* 8 * 8px */
+}
+
+@media (max-width: 768px) {
+  .section-wrapper {
+    padding-top: 64px;    /* 8 * 8px */
+    padding-bottom: 64px; /* 8 * 8px */
+    padding-left: 16px;   /* 2 * 8px */
+    padding-right: 16px;  /* 2 * 8px */
+  }
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+
+/* Premium Interactive Buttons */
+.btn-primary {
+  background: var(--clay);
+  color: var(--page-cream);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 15px;
+  padding: 13px 30px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: var(--clay-deep);
+  box-shadow: 0 8px 24px rgba(122, 92, 71, 0.2);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--walnut);
+  border: 1px solid var(--hairline);
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: 15px;
+  padding: 13px 30px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+.btn-outline:hover {
+  background: var(--card-neutral);
+  transform: translateY(-2px);
+}
+
+/* Card System */
+.luxury-card {
+  background: var(--card-neutral);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.accent-card {
+  background: linear-gradient(180deg, var(--blush-start) 0%, var(--blush-end) 100%);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.accent-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.icon-tile {
+  width: 44px;
+  height: 44px;
+  border: 1.5px solid var(--clay-deep);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--clay-deep);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* 8px grid */
+}
+::-webkit-scrollbar-track {
+  background: var(--page-cream);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clay);
+}
