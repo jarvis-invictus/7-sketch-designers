@@ -1,5 +1,6 @@
 import React from 'react';
 import { ClipboardCheck, Users, LineChart, KeyRound } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function PmcDeepDive() {
   const scopeColumns = [
@@ -38,7 +39,15 @@ export default function PmcDeepDive() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {scopeColumns.map((col, idx) => (
-            <div key={idx} className="luxury-card" style={{ background: '#FFFFFF', padding: '32px 24px', borderRadius: 'var(--radius-lg)' }}>
+            <motion.div 
+              key={idx} 
+              style={{ background: '#FFFFFF', padding: '32px 24px', borderRadius: 'var(--radius-lg)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1, ease: 'easeOut' }}
+              whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
+            >
               <div style={{ width: '44px', height: '44px', background: 'var(--page-cream)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px', border: '1px solid var(--hairline)' }}>
                 {col.icon}
               </div>
@@ -50,7 +59,7 @@ export default function PmcDeepDive() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
 

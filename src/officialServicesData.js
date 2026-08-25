@@ -68,4 +68,20 @@ export const officialServicesData = [
       { name: 'MEP Coordination', desc: 'Seamless integration of Mechanical, Electrical, Plumbing, HVAC air-conditioning, and Fire Fighting systems.' }
     ]
   }
+,
+  {
+    id: 'interior-design',
+    slug: 'interior-design',
+    title: 'Interior Design',
+    badge: 'Commercial & Institutional Spaces',
+    heroSubtitle: 'Corporate Offices, Hospitality, Healthcare & Education',
+    heroImage: '/project-wilo-1.jpg',
+    description: 'Full interior design services across commercial and institutional spaces. We focus on creating functional, inspiring, and brand-aligned environments for corporate offices, hotels, hospitals, educational campuses, and industrial sites.',
+    interiorTypologies: [
+      { name: 'Corporate Offices', desc: 'Headquarters, regional offices, IT parks, and executive suites.' },
+      { name: 'Hotels & Hospitals', desc: 'Luxury hospitality suites, specialized medical layouts, and reception lobbies.' },
+      { name: 'Educational Institutes', desc: 'Colleges, training halls, academic libraries, and multipurpose auditoriums.' },
+      { name: 'Industrial Offices', desc: 'Manufacturing plant administration offices, control rooms, and utility blocks.' }
+    ]
+  }
 ];

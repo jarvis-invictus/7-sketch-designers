@@ -108,7 +108,7 @@ const ScrollHero = () => {
         className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4 z-10"
       >
         <img 
-          src="/project-p1-2.png" 
+          src="/new-main-logo.png" 
           alt="7 Sketch Designers Logo" 
           className="w-full max-w-[500px] md:max-w-[700px] lg:max-w-[900px] drop-shadow-2xl object-contain"
         />

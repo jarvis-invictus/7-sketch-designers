@@ -1,5 +1,6 @@
 import React from 'react';
 import { Target, Eye, Gem } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function MissionVision() {
   return (
@@ -9,7 +10,14 @@ export default function MissionVision() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           
           {/* Mission */}
-          <div className="luxury-card" style={{ background: 'var(--card-neutral)', padding: '40px', display: 'flex', flexDirection: 'column' }}>
+          <motion.div 
+            style={{ background: 'var(--card-neutral)', padding: '40px', display: 'flex', flexDirection: 'column', borderRadius: 'var(--radius-lg)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0, ease: 'easeOut' }}
+            whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
+          >
             <div style={{ width: '48px', height: '48px', background: 'var(--page-cream)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
               <Target size={24} color="var(--clay-deep)" strokeWidth={1.5} />
             </div>
@@ -28,10 +36,17 @@ export default function MissionVision() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Vision (Accent Card) */}
-          <div className="luxury-card" style={{ background: 'linear-gradient(180deg, var(--blush-start) 0%, var(--blush-end) 100%)', padding: '40px', display: 'flex', flexDirection: 'column' }}>
+          <motion.div 
+            style={{ background: 'linear-gradient(180deg, var(--blush-start) 0%, var(--blush-end) 100%)', padding: '40px', display: 'flex', flexDirection: 'column', borderRadius: 'var(--radius-lg)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+            whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
+          >
             <div style={{ width: '48px', height: '48px', background: 'rgba(255,255,255,0.4)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
               <Eye size={24} color="var(--clay-deep)" strokeWidth={1.5} />
             </div>
@@ -39,10 +54,17 @@ export default function MissionVision() {
             <blockquote style={{ margin: 0, color: 'var(--walnut)', fontSize: '17px', lineHeight: '1.7', fontStyle: 'italic', fontFamily: 'var(--font-display)' }}>
               "To become one of India's most trusted Architectural & Interior Project Management Consultancy firms by delivering world-class commercial spaces that combine functionality, innovation, and quality."
             </blockquote>
-          </div>
+          </motion.div>
 
           {/* Core Values */}
-          <div className="luxury-card" style={{ background: 'var(--card-neutral)', padding: '40px', display: 'flex', flexDirection: 'column' }}>
+          <motion.div 
+            style={{ background: 'var(--card-neutral)', padding: '40px', display: 'flex', flexDirection: 'column', borderRadius: 'var(--radius-lg)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
+            whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
+          >
             <div style={{ width: '48px', height: '48px', background: 'var(--page-cream)', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '24px' }}>
               <Gem size={24} color="var(--clay-deep)" strokeWidth={1.5} />
             </div>
@@ -67,7 +89,7 @@ export default function MissionVision() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

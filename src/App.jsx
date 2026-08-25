@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import ScrollHero from './components/ui/scroll-hero';
 import ProjectsPortfolio from './components/ui/projects-portfolio';
 import { officialServicesData } from './officialServicesData';
 import { 
   Building2, Phone, Mail, MapPin, ChevronRight, CheckCircle2, 
   Layers, ArrowLeft, ArrowRight, Calculator, Compass, Sparkles, 
-  ChevronDown
+  ChevronDown, Home
 } from 'lucide-react';
 
 import AboutSection from './components/ui/about-section';
@@ -17,6 +18,22 @@ import TeamSection from './components/ui/team-section';
 import PartnerSection from './components/ui/partner-section';
 import Testimonials from './components/ui/testimonials';
 import ProjectDetail from './components/ui/project-detail';
+import ServicesCarousel from './components/ui/services-carousel';
+import { 
+  Phase1Illustration, 
+  Phase2Illustration, 
+  Phase3Illustration, 
+  Phase4Illustration, 
+  Phase5Illustration 
+} from './components/ui/process-illustrations';
+
+const ProcessIllustrations = [
+  Phase1Illustration,
+  Phase2Illustration,
+  Phase3Illustration,
+  Phase4Illustration,
+  Phase5Illustration
+];
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,8 +45,7 @@ export default function App() {
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
-  // Active Step for Interactive Creative Execution Canvas
-  const [activeProcessStep, setActiveProcessStep] = useState(0);
+  // Process Steps are now sequentially mapped, no active step state needed.
 
   useEffect(() => {
     const handleScroll = () => {
@@ -167,7 +183,7 @@ export default function App() {
       title: 'Tata Commercial Service Centre',
       type: 'Commercial Service Centre',
       scope: 'Space Planning, Turnkey Execution, Furniture & Finishing',
-      images: ['/project-p19-3.png', '/project-p19-2.png', '/project-p19-4.png', '/project-p19-6.png'],
+      images: ['/project-p13-4.jpg'],
       details: 'High-utility customer service hub with ergonomic lounge zones and durable industrial finishes.'
     }
   ];
@@ -239,11 +255,11 @@ export default function App() {
           <span>7 SKETCH DESIGNERS • Architectural, Interior & PMC Firm in Pune</span>
         </div>
         <div style={{ display: 'flex', gap: '18px', alignItems: 'center' }}>
-          <a href="tel:+917517277477" style={{ color: '#FFFFFF', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
+          <a href="tel:+917517277477" style={{ color: 'var(--walnut)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
             <Phone size={12} color="var(--brand-gold)" /> +91 75172 77477
           </a>
           <span style={{ opacity: 0.3 }}>|</span>
-          <a href="mailto:7sketchdesigner@gmail.com" style={{ color: '#FFFFFF', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
+          <a href="mailto:7sketchdesigner@gmail.com" style={{ color: 'var(--walnut)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}>
             <Mail size={12} color="var(--brand-gold)" /> 7sketchdesigner@gmail.com
           </a>
         </div>
@@ -258,45 +274,26 @@ export default function App() {
         zIndex: 100,
         padding: '14px 5%',
         display: 'flex',
-        justify: 'space-between',
+        justifyContent: 'space-between',
         alignItems: 'center',
         gap: '20px',
         opacity: (currentView === 'home' && !isScrolledPastHero) ? 0 : 1,
         pointerEvents: (currentView === 'home' && !isScrolledPastHero) ? 'none' : 'auto',
         transform: (currentView === 'home' && !isScrolledPastHero) ? 'translateY(-100%)' : 'translateY(0)',
         transition: 'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-        background: 'rgba(255, 255, 255, 0.85)',
+        background: 'rgba(250, 246, 240, 0.95)',
         backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(0,0,0,0.05)',
+        borderBottom: '1px solid var(--hairline)',
       }}>
         {/* Brand Logo */}
         <div 
           onClick={navigateToHome} 
-          style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer', flexShrink: 0 }}
+          style={{ cursor: 'pointer', flexShrink: 0, padding: '4px 0', display: 'flex', alignItems: 'center', gap: '12px' }}
         >
-          <div style={{
-            background: 'var(--brand-dark)',
-            color: '#FFFFFF',
-            width: '40px',
-            height: '40px',
-            borderRadius: '4px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontFamily: 'var(--font-heading)',
-            fontWeight: '800',
-            fontSize: '22px',
-            boxShadow: '0 4px 14px rgba(0,0,0,0.18)'
-          }}>
-            7
-          </div>
-          <div>
-            <div style={{ fontFamily: 'var(--font-serif)', fontWeight: '800', fontSize: '18px', letterSpacing: '0.5px', lineHeight: 1, color: 'var(--brand-dark)' }}>
-              SKETCH <span style={{ color: 'var(--brand-gold)', fontWeight: '600', fontSize: '13.5px' }}>DESIGNERS</span>
-            </div>
-            <div style={{ fontSize: '8.5px', color: 'var(--text-muted)', letterSpacing: '2px', textTransform: 'uppercase', marginTop: '2px', fontWeight: '700' }}>
-              Architectural • Interior • PMC
-            </div>
+          <img src="/pure-icon-logo.png" alt="7 Sketch Designers" style={{ height: '45px', objectFit: 'contain' }} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: '600', color: 'var(--walnut)', lineHeight: '1.2' }}>Sketch Designer's</span>
+            <span style={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--stone-text)', marginTop: '2px' }}>Architecture, Interior & Landscape Consultant</span>
           </div>
         </div>
 
@@ -313,9 +310,9 @@ export default function App() {
               style={{ 
                 background: 'none', 
                 border: 'none', 
-                color: currentView === 'service-detail' ? 'var(--clay)' : 'var(--walnut)', 
+                color: currentView === 'service-detail' ? 'var(--brand-gold)' : 'var(--walnut)', 
                 fontSize: '14px', 
-                fontWeight: currentView === 'service-detail' ? '700' : '600', 
+                fontWeight: currentView === 'service-detail' ? '700' : '500', 
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
@@ -323,7 +320,7 @@ export default function App() {
                 whiteSpace: 'nowrap'
               }}
             >
-              Services <ChevronDown size={14} color={currentView === 'service-detail' ? 'var(--clay)' : 'var(--text-muted)'} />
+              Services <ChevronDown size={14} color={currentView === 'service-detail' ? 'var(--brand-gold)' : 'var(--walnut)'} />
             </button>
 
             {isServicesDropdownOpen && (
@@ -332,56 +329,78 @@ export default function App() {
                   position: 'absolute',
                   top: '100%',
                   left: '-10px',
-                  width: '320px',
-                  background: '#FFFFFF',
+                  width: '360px',
+                  background: 'var(--card-neutral)',
                   border: '1px solid var(--hairline)',
-                  borderRadius: '8px',
-                  boxShadow: 'var(--shadow-hover)',
-                  padding: '10px',
+                  borderRadius: '12px',
+                  boxShadow: '0 12px 32px rgba(0,0,0,0.1)',
+                  padding: '12px',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '4px',
+                  gap: '8px',
                   zIndex: 110
                 }}
               >
-                {officialServicesData.map(s => (
+                {officialServicesData.map(s => {
+                  let Icon = Compass;
+                  if (s.id === 'architectural-consultancy') Icon = Compass;
+                  if (s.id === 'project-management-consultancy') Icon = Layers;
+                  if (s.id === 'turnkey-interior-execution') Icon = Building2;
+                  if (s.id === 'interior-design') Icon = Home;
+                  return (
                   <div
                     key={s.id}
-                    onClick={() => navigateToService(s.id)}
+                    onClick={() => { setIsServicesDropdownOpen(false); navigateToService(s.id); }}
                     style={{
-                      padding: '12px 14px',
-                      borderRadius: '6px',
+                      padding: '14px 16px',
+                      borderRadius: '8px',
                       cursor: 'pointer',
-                      background: selectedServiceId === s.id && currentView === 'service-detail' ? 'var(--card-neutral)' : 'transparent',
-                      transition: 'all 0.2s ease'
+                      background: selectedServiceId === s.id && currentView === 'service-detail' ? 'var(--page-cream)' : 'transparent',
+                      border: '1px solid',
+                      borderColor: selectedServiceId === s.id && currentView === 'service-detail' ? 'var(--brand-gold)' : 'transparent',
+                      transition: 'all 0.2s ease',
+                      display: 'flex',
+                      gap: '16px',
+                      alignItems: 'center'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!(selectedServiceId === s.id && currentView === 'service-detail')) {
+                        e.currentTarget.style.background = 'var(--page-cream)';
+                        e.currentTarget.style.borderColor = 'var(--hairline)';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!(selectedServiceId === s.id && currentView === 'service-detail')) {
+                        e.currentTarget.style.background = 'transparent';
+                        e.currentTarget.style.borderColor = 'transparent';
+                      }
                     }}
                   >
-                    <div style={{ fontSize: '13.5px', fontWeight: '700', color: 'var(--walnut)' }}>{s.title}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '2px' }}>{s.badge}</div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '40px', height: '40px', borderRadius: '8px', background: 'var(--accent-soft)', color: 'var(--walnut)' }}>
+                      <Icon size={20} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--walnut)' }}>{s.title}</div>
+                      <div style={{ fontSize: '12px', color: 'var(--stone-text)', marginTop: '2px' }}>{s.badge}</div>
+                    </div>
                   </div>
-                ))}
+                )})}
               </div>
             )}
           </div>
           
-          <a href="#portfolio" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '600', whiteSpace: 'nowrap' }}>Projects</a>
-          <a href="#process" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '600', whiteSpace: 'nowrap' }}>Process</a>
-          <a href="#about" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '600', whiteSpace: 'nowrap' }}>About</a>
-          <a href="#contact" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '600', whiteSpace: 'nowrap' }}>Contact</a>
+          <a href="#portfolio" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Projects</a>
+          <a href="#process" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Process</a>
+          <a href="#about" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>About</a>
+          <a href="#contact" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Contact</a>
         </nav>
 
         {/* Right Action CTAs */}
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexShrink: 0 }}>
-          <button 
-            onClick={() => setIsCalculatorOpen(true)} 
-            className="btn-outline" 
-            style={{ padding: '12px 24px', fontSize: '14px', whiteSpace: 'nowrap' }}
-          >
-            <Calculator size={16} /> Estimator
-          </button>
+          {/* Estimator hidden because modal is not yet built */}
           <a 
             href="#contact" 
-            onClick={() => setCurrentView('home')} 
+            onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} 
             className="btn-primary" 
             style={{ padding: '12px 24px', fontSize: '14px', whiteSpace: 'nowrap' }}
           >
@@ -421,9 +440,10 @@ export default function App() {
                 </p>
 
                 <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-                  <button onClick={() => setIsCalculatorOpen(true)} className="btn-primary">
+                  {/* Calculator modal not built yet */}
+                  {/* <button onClick={() => setIsCalculatorOpen(true)} className="btn-primary">
                     <Calculator size={16} /> Get Service Costing
-                  </button>
+                  </button> */}
                   <button onClick={navigateToHome} className="btn-outline">
                     <ArrowLeft size={16} /> Back to Home
                   </button>
@@ -483,86 +503,14 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                {/* 1. Architectural Consultancy */}
-                <div className="luxury-card" style={{ padding: '38px', background: 'var(--card-neutral)' }}>
-                  <div style={{ width: '52px', height: '52px', background: 'var(--page-cream)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--brand-gold)', marginBottom: '22px' }}>
-                    <Compass size={26} />
-                  </div>
-                  <h3 style={{ marginBottom: '12px' }}>Architectural Consultancy</h3>
-                  <p style={{ marginBottom: '24px' }}>
-                    Comprehensive spatial master planning, 3D concept development, working blueprints, and municipal sanction drawings.
-                  </p>
-
-                  <div style={{ background: '#FFFFFF', padding: '18px', borderRadius: '6px', marginBottom: '28px' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--brand-gold)', textTransform: 'uppercase', marginBottom: '8px' }}>Core Capabilities</div>
-                    <div style={{ fontSize: '13.5px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                      <div>• Planning & Concept Development</div>
-                      <div>• Working Drawings & Municipal Drawings</div>
-                      <div>• Corporate, Hotels, Hospitals, Colleges, Industrial</div>
-                    </div>
-                  </div>
-
-                  <button onClick={() => navigateToService('architectural-consultancy')} className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                    Explore Architectural Service <ArrowRight size={16} />
-                  </button>
-                </div>
-
-                {/* 2. Project Management Consultancy (PMC) */}
-                <div className="luxury-card" style={{ padding: '38px', background: 'var(--card-neutral)' }}>
-                  <div style={{ width: '52px', height: '52px', background: 'var(--page-cream)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--brand-gold)', marginBottom: '22px' }}>
-                    <Layers size={26} />
-                  </div>
-                  <h3 style={{ marginBottom: '12px' }}>Project Management Consultancy (PMC)</h3>
-                  <p style={{ marginBottom: '24px' }}>
-                    Professional PMC service providing total control over planning, budget, execution, monitoring, and quality control.
-                  </p>
-
-                  <div style={{ background: '#FFFFFF', padding: '18px', borderRadius: '6px', marginBottom: '28px' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--brand-gold)', textTransform: 'uppercase', marginBottom: '8px' }}>5 Core Pillars</div>
-                    <div style={{ fontSize: '13.5px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                      <div>• Planning • Budget • Execution</div>
-                      <div>• Monitoring • Quality Control</div>
-                      <div>• 12-Point Detailed Scope Governance</div>
-                    </div>
-                  </div>
-
-                  <button onClick={() => navigateToService('project-management-consultancy')} className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                    Explore PMC Scope <ArrowRight size={16} />
-                  </button>
-                </div>
-
-                {/* 3. Turnkey Interior Execution */}
-                <div className="luxury-card" style={{ padding: '38px', background: 'var(--card-neutral)' }}>
-                  <div style={{ width: '52px', height: '52px', background: 'var(--page-cream)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--brand-gold)', marginBottom: '22px' }}>
-                    <Building2 size={26} />
-                  </div>
-                  <h3 style={{ marginBottom: '12px' }}>Turnkey Interior Execution</h3>
-                  <p style={{ marginBottom: '24px' }}>
-                    Single-point accountability for civil works, electricals, custom modular furniture, flooring, painting, and MEP.
-                  </p>
-
-                  <div style={{ background: '#FFFFFF', padding: '18px', borderRadius: '6px', marginBottom: '28px' }}>
-                    <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--brand-gold)', textTransform: 'uppercase', marginBottom: '8px' }}>Turnkey Fit-Out Scope</div>
-                    <div style={{ fontSize: '13.5px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                      <div>• Civil • Electrical • Flooring • Painting</div>
-                      <div>• Furniture (German CNC Factory MODULE F)</div>
-                      <div>• Complete MEP Coordination</div>
-                    </div>
-                  </div>
-
-                  <button onClick={() => navigateToService('turnkey-interior-execution')} className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-                    Explore Turnkey Scope <ArrowRight size={16} />
-                  </button>
-                </div>
-              </div>
+              <ServicesCarousel navigateToService={navigateToService} projects={projects} />
             </div>
           </section>
 
           {/* INTERACTIVE EXECUTION BLUEPRINT */}
-          <section id="process" className="section-wrapper" style={{ background: 'var(--page-cream)', borderTop: '1px solid var(--hairline)' }}>
+          <section id="process" className="section-wrapper" style={{ background: 'var(--page-cream)', borderTop: '1px solid var(--hairline)', paddingTop: '64px', paddingBottom: '64px' }}>
             <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
-              <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 60px auto' }}>
+              <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 32px auto' }}>
                 <span className="brand-badge">Creative Architecture Journey</span>
                 <h2 style={{ marginTop: '10px' }}>Interactive Execution Blueprint</h2>
                 <p style={{ marginTop: '10px' }}>
@@ -570,65 +518,50 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Interactive Step Switcher Bar */}
-              <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px' }}>
+              {/* Sequential Process Reveal */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 {creativeExecutionProcess.map((item, idx) => (
-                  <button
+                  <motion.div 
                     key={idx}
-                    onClick={() => setActiveProcessStep(idx)}
-                    style={{
-                      padding: '12px 24px',
-                      borderRadius: '30px',
-                      border: '1.5px solid',
-                      borderColor: activeProcessStep === idx ? 'var(--brand-gold)' : 'var(--hairline)',
-                      background: activeProcessStep === idx ? 'var(--walnut)' : '#FFFFFF',
-                      color: activeProcessStep === idx ? '#FFFFFF' : 'var(--walnut)',
-                      fontWeight: '700',
-                      fontSize: '13.5px',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '10px',
-                      boxShadow: activeProcessStep === idx ? '0 8px 20px rgba(0,0,0,0.15)' : 'none',
-                      transition: 'all 0.3s ease'
-                    }}
+                    style={{ background: 'var(--card-neutral)', padding: '24px 32px', borderRadius: '12px', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+                    whileHover={{ y: -4, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
                   >
-                    <span style={{ color: activeProcessStep === idx ? 'var(--brand-gold)' : 'var(--text-muted)' }}>{item.num}</span>
-                    <span>{item.stage.split('&')[0]}</span>
-                  </button>
-                ))}
-              </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-[48px] items-center">
+                      <div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '14px' }}>
+                          <span style={{ fontSize: '28px', fontWeight: '800', color: 'var(--brand-gold)', lineHeight: 1 }}>{item.num}</span>
+                          <span className="brand-badge">{item.tag}</span>
+                        </div>
+                        <h3 style={{ marginBottom: '16px' }}>
+                          {item.stage}
+                        </h3>
+                        <p style={{ marginBottom: '28px' }}>
+                          {item.description}
+                        </p>
 
-              {/* Dynamic Interactive Stage Canvas Showcase */}
-              <div className="luxury-card" style={{ background: 'var(--card-neutral)', padding: '40px', borderRadius: '12px' }}>
-                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-[48px] items-center">
-                  <div>
-                    <span className="brand-badge" style={{ marginBottom: '14px' }}>{creativeExecutionProcess[activeProcessStep].tag}</span>
-                    <h3 style={{ marginBottom: '16px' }}>
-                      {creativeExecutionProcess[activeProcessStep].stage}
-                    </h3>
-                    <p style={{ marginBottom: '28px' }}>
-                      {creativeExecutionProcess[activeProcessStep].description}
-                    </p>
-
-                    <div style={{ background: '#FFFFFF', padding: '20px 24px', borderRadius: '8px', borderLeft: '4px solid var(--brand-gold)', boxShadow: 'var(--shadow-sm)' }}>
-                      <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--brand-gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>
-                        Verified Stage Deliverable
+                        <div style={{ background: '#FFFFFF', padding: '20px 24px', borderRadius: '8px', borderLeft: '4px solid var(--brand-gold)', boxShadow: 'var(--shadow-sm)' }}>
+                          <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--brand-gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>
+                            Verified Stage Deliverable
+                          </div>
+                          <div style={{ fontSize: '16px', fontWeight: '700', color: 'var(--walnut)' }}>
+                            {item.deliverable}
+                          </div>
+                        </div>
                       </div>
-                      <div style={{ fontSize: '16px', fontWeight: '700', color: 'var(--walnut)' }}>
-                        {creativeExecutionProcess[activeProcessStep].deliverable}
+
+                      <div style={{ position: 'relative' }}>
+                        {(() => {
+                          const Illustration = ProcessIllustrations[idx];
+                          return <Illustration />;
+                        })()}
                       </div>
                     </div>
-                  </div>
-
-                  <div style={{ position: 'relative' }}>
-                    <img 
-                      src={creativeExecutionProcess[activeProcessStep].image} 
-                      alt="Stage canvas" 
-                      style={{ width: '100%', height: '360px', objectFit: 'cover', borderRadius: '8px', boxShadow: 'var(--shadow-hover)' }}
-                    />
-                  </div>
-                </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </section>
@@ -666,7 +599,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <a href="#contact" className="btn-primary">
+                <a href="#contact" onClick={(e) => { e.preventDefault(); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} className="btn-primary">
                   Inquire About Modular Fit-Outs <ArrowRight size={16} />
                 </a>
               </div>
@@ -696,75 +629,142 @@ export default function App() {
         </div>
       )}
 
-      {/* Footer Section */}
-      <footer id="contact" className="section-wrapper" style={{ background: 'var(--section-cream)', color: 'var(--walnut)' }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[60px]" style={{ maxWidth: '1240px', margin: '0 auto' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-              <div style={{ background: 'var(--clay)', color: 'var(--page-cream)', width: '38px', height: '38px', borderRadius: 'var(--radius-sm)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: '500', fontSize: '20px' }}>7</div>
-              <span style={{ fontSize: '22px', fontWeight: '500', fontFamily: 'var(--font-display)', color: 'var(--clay-deep)' }}>7 SKETCH DESIGNERS</span>
-            </div>
-
-            <p style={{ color: 'var(--stone-text)', fontSize: '15px', lineHeight: '1.8', marginBottom: '32px', maxWidth: '440px' }}>
-              Designing Spaces. Delivering Excellence. Architectural, Interior Design & Project Management Consultancy firm in Pune.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
-              {/* Quick Links */}
-              <div>
-                <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '16px', fontFamily: 'var(--font-display)' }}>Quick Links</h4>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14.5px' }}>
-                  <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Services</a>
-                  <a href="#portfolio" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Projects</a>
-                  <a href="#about" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>About</a>
-                  <a href="#contact" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Contact</a>
-                </div>
-              </div>
-
-              {/* Contact Info */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '14.5px' }}>
-                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                    <MapPin size={20} color="var(--clay-deep)" strokeWidth={1.5} />
-                    <span>Office No. G-28, Ground Floor, One Mall, Ravet–Aundh BRT Road, Pune – 412101</span>
-                  </div>
-                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                    <Phone size={20} color="var(--clay-deep)" strokeWidth={1.5} />
-                    <a href="tel:+917517277477" style={{ color: 'var(--walnut)', textDecoration: 'none' }}>+91 75172 77477</a>
-                  </div>
-                  <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                    <Mail size={20} color="var(--clay-deep)" strokeWidth={1.5} />
-                    <a href="mailto:7sketchdesigner@gmail.com" style={{ color: 'var(--walnut)', textDecoration: 'none' }}>7sketchdesigner@gmail.com</a>
-                  </div>
-                </div>
-              </div>
-
-              <div style={{ fontSize: '13px', color: '#7D786E' }}>
-                © {new Date().getFullYear()} 7 Sketch Designers. Associated with MODULE F Homes.
-              </div>
+      
+      {/* Contact Section */}
+      <section id="contact" className="section-wrapper" style={{ background: 'var(--section-cream)', padding: '100px 24px' }}>
+        <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[60px] items-stretch">
+            
+            {/* Maps Embed */}
+            <div style={{ minHeight: '400px', borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--shadow-hover)' }}>
+              <iframe 
+                src="https://maps.google.com/maps?q=Office+No.+G-28,+Ground+Floor,+One+Mall,+Ravet%E2%80%93Aundh+BRT+Road,+Pune&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, minHeight: '100%' }} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
 
             <div style={{ background: 'var(--card-neutral)', color: 'var(--walnut)', padding: '48px', borderRadius: '16px', boxShadow: 'var(--shadow-hover)' }}>
-            <h3 style={{ fontSize: '31px', marginBottom: '8px' }}>Get In Touch</h3>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
-              <div style={{ display: 'flex', color: 'var(--clay)' }}>
-                ★★★★★
+              <h3 style={{ fontSize: '31px', marginBottom: '8px' }}>Get In Touch</h3>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
+                <div style={{ display: 'flex', color: 'var(--clay)' }}>
+                  ★★★★★
+                </div>
+                <span style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: '600' }}>Trusted by 50+ Corporate Brands in Pune</span>
               </div>
-              <span style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: '600' }}>Trusted by 50+ Corporate Brands in Pune</span>
-            </div>
-            <p style={{ fontSize: '16px', color: 'var(--stone-text)', marginBottom: '32px', lineHeight: '1.5' }}>Speak directly with Principal Architect Rohit Wankhede to discuss your spatial requirements.</p>
+              <p style={{ fontSize: '16px', color: 'var(--stone-text)', marginBottom: '32px', lineHeight: '1.5' }}>Speak directly with Principal Architect Rohit Wankhede to discuss your spatial requirements.</p>
 
-            <form onSubmit={(e) => { e.preventDefault(); alert('Inquiry sent! We will call you shortly.'); }} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <input type="text" placeholder="Your Full Name" required style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none' }} />
-              <input type="tel" placeholder="Mobile Number (+91)" required style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none' }} />
-              <select style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none', color: 'var(--walnut)' }}>
-                <option value="architectural">Architectural Consultancy</option>
-                <option value="pmc">PMC Feasibility Audit</option>
-                <option value="turnkey">Turnkey Commercial Fit-Out</option>
-              </select>
-              <button type="submit" className="btn-primary" style={{ justifyContent: 'center' }}>
-                Book Consultation Now <ArrowRight size={16} />
-              </button>
-            </form>
+              <form onSubmit={(e) => { 
+                try {
+                  e.preventDefault(); 
+                  const formData = new FormData(e.target);
+                  const name = formData.get('name') || '';
+                  const mobile = formData.get('mobile') || '';
+                  const service = formData.get('service') || '';
+                  let message = formData.get('message') || '';
+                  
+                  if (typeof message === 'string') {
+                    message = message.trim();
+                  }
+                  
+                  let text = `Hi, I'm ${name}. I'm interested in ${service}.`;
+                  if (message) {
+                    text += ` ${message}.`;
+                  }
+                  text += ` Contact: ${mobile}.`;
+                  
+                  const url = `https://wa.me/917517277477?text=${encodeURIComponent(text)}`;
+                  window.open(url, '_blank');
+                } catch (err) {
+                  console.error("Form submit error:", err);
+                }
+              }} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <input name="name" type="text" placeholder="Your Full Name" required style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none' }} />
+                <input name="mobile" type="tel" placeholder="Mobile Number (+91)" required style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none' }} />
+                <select name="service" style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none', color: 'var(--walnut)' }}>
+                  <option value="Architectural Consultancy">Architectural Consultancy</option>
+                  <option value="PMC Feasibility Audit">PMC Feasibility Audit</option>
+                  <option value="Turnkey Commercial Fit-Out">Turnkey Commercial Fit-Out</option>
+                  <option value="Interior Design">Interior Design</option>
+                </select>
+                <textarea name="message" placeholder="Tell us more (Optional)" style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none', minHeight: '100px', resize: 'vertical' }} />
+                <button type="submit" className="btn-primary" style={{ justifyContent: 'center' }}>
+                  Book Consultation Now <ArrowRight size={16} />
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+            {/* Footer Section */}
+      <footer style={{ background: 'var(--accent-soft)', color: 'var(--stone-text)', padding: '80px 24px 40px 24px' }}>
+        <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12" style={{ marginBottom: '60px' }}>
+            {/* Column 1: Brand */}
+            <div>
+              <img src="/main-logo.png" alt="7 Sketch Designers" style={{ height: '60px', objectFit: 'contain', marginBottom: '20px' }} />
+              <p style={{ color: 'var(--stone-text)', fontSize: '14.5px', lineHeight: '1.6', marginBottom: '24px' }}>
+                Designing Spaces. Delivering Excellence.
+              </p>
+              <a href="https://www.instagram.com/7sketchdesigners" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '40px', height: '40px', borderRadius: '50%', background: 'var(--walnut)', color: 'var(--page-cream)', textDecoration: 'none', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.background = 'var(--clay)'} onMouseLeave={(e) => e.currentTarget.style.background = 'var(--walnut)'}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+              </a>
+            </div>
+
+            {/* Column 2: Quick Links */}
+            <div>
+              <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '24px', fontFamily: 'var(--font-display)', fontWeight: '600' }}>Quick Links</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14.5px' }}>
+                <a href="#services" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Services</a>
+                <a href="#portfolio" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Projects</a>
+                <a href="#process" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Process</a>
+                <a href="#about" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>About</a>
+                <a href="#contact" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Contact</a>
+              </div>
+            </div>
+
+            {/* Column 3: Our Services */}
+            <div>
+              <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '24px', fontFamily: 'var(--font-display)', fontWeight: '600' }}>Our Services</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14.5px' }}>
+                <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Architectural Consultancy</a>
+                <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Project Management Consultancy</a>
+                <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Turnkey Interior Execution</a>
+                <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Interior Design</a>
+              </div>
+            </div>
+
+            {/* Column 4: Contact Info */}
+            <div>
+              <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '24px', fontFamily: 'var(--font-display)', fontWeight: '600' }}>Contact Info</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', fontSize: '14.5px', color: 'var(--stone-text)' }}>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                  <MapPin size={20} color="var(--clay-deep)" strokeWidth={1.5} style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <span>Office No. G-28, Ground Floor, One Mall, Ravet–Aundh BRT Road, Pune – 412101</span>
+                </div>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                  <Phone size={20} color="var(--clay-deep)" strokeWidth={1.5} style={{ flexShrink: 0 }} />
+                  <a href="tel:+917517277477" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>+91 75172 77477</a>
+                </div>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                  <Mail size={20} color="var(--clay-deep)" strokeWidth={1.5} style={{ flexShrink: 0 }} />
+                  <a href="mailto:7sketchdesigner@gmail.com" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>7sketchdesigner@gmail.com</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ paddingTop: '24px', borderTop: '1px solid var(--hairline)', fontSize: '13.5px', color: 'var(--muted)', textAlign: 'center' }}>
+            © {new Date().getFullYear()} 7 Sketch Designers. Associated with MODULE F Homes.
           </div>
         </div>
       </footer>
