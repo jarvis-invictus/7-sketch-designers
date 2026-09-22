@@ -150,7 +150,7 @@ export const Phase3Illustration = () => (
   </SvgContainer>
 );
 
-// Phase 4: MODULE F CNC Production (Wardrobe cabinet mid-assembly)
+// Phase 4: In-House CNC Production (Wardrobe cabinet mid-assembly)
 export const Phase4Illustration = () => (
   <SvgContainer>
     {/* Cabinet Main Carcass */}

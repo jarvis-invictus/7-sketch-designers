@@ -62,7 +62,7 @@ export const officialServicesData = [
     turnkeyComponents: [
       { name: 'Civil', desc: 'Drywall partitioning, masonry, false ceilings, waterproofing, and structural modifications.' },
       { name: 'Electrical', desc: 'Concealed wiring, main distribution panels, architectural lighting, and power backup systems.' },
-      { name: 'Furniture', desc: 'Precision modular workstations, executive desks, acoustic panels, and storage manufactured at our MODULE F German CNC facility.' },
+      { name: 'Furniture', desc: 'Precision modular workstations, executive desks, acoustic panels, and storage manufactured at our in-house German CNC facility.' },
       { name: 'Flooring', desc: 'Italian marble, vitrified tiles, wooden flooring, raised access flooring, and epoxy coatings.' },
       { name: 'Painting', desc: 'Textured wall coats, PU wood polishing, fire-retardant paint, and high-durability acrylic emulsions.' },
       { name: 'MEP Coordination', desc: 'Seamless integration of Mechanical, Electrical, Plumbing, HVAC air-conditioning, and Fire Fighting systems.' }

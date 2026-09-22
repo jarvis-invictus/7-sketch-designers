@@ -1,98 +1,149 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const ScrollHero = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  
+  const imagesRef = useRef<HTMLImageElement[]>([]);
+  const [firstFrameLoaded, setFirstFrameLoaded] = useState(false);
 
   useEffect(() => {
+    const frameCount = 180;
+    const currentFrame = (index: number) => `/hero-frames/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+
+    // Simple batch loading to avoid huge simultaneous network requests
+    const batchSize = 15;
+    
+    const loadBatch = (startIndex: number) => {
+      if (startIndex > frameCount) return;
+      const endIndex = Math.min(startIndex + batchSize - 1, frameCount);
+      let loadedCount = 0;
+      const totalToLoad = endIndex - startIndex + 1;
+      
+      const onImageLoadOrError = () => {
+        loadedCount++;
+        if (loadedCount === totalToLoad) {
+          loadBatch(endIndex + 1);
+        }
+      };
+
+      for (let i = startIndex; i <= endIndex; i++) {
+        const img = new Image();
+        img.src = currentFrame(i);
+        img.onload = () => {
+          imagesRef.current[i] = img;
+          onImageLoadOrError();
+        };
+        img.onerror = onImageLoadOrError;
+      }
+    };
+
+    // Load first frame immediately
+    const firstImg = new Image();
+    firstImg.src = currentFrame(1);
+    firstImg.onload = () => {
+      imagesRef.current[1] = firstImg;
+      setFirstFrameLoaded(true);
+      loadBatch(2); // Start background loading
+    };
+  }, []);
+
+  const renderFrame = (index: number) => {
     const canvas = canvasRef.current;
     const context = canvas?.getContext('2d');
     if (!canvas || !context) return;
 
-    const frameCount = 180;
-    const currentFrame = (index: number) => 
-      `/frames/frame-${(index + 1).toString().padStart(3, '0')}.jpg`;
+    let targetIndex = Math.round(index);
+    if (targetIndex < 1) targetIndex = 1;
+    if (targetIndex > 180) targetIndex = 180;
 
-    // Handle Retina displays for crisp images
-    const pixelRatio = window.devicePixelRatio || 1;
-    canvas.width = window.innerWidth * pixelRatio;
-    canvas.height = window.innerHeight * pixelRatio;
+    // Nearest loaded frame fallback if not exact match
+    if (!imagesRef.current[targetIndex]) {
+      for (let i = 1; i < 180; i++) {
+        if (targetIndex - i >= 1 && imagesRef.current[targetIndex - i]) { targetIndex -= i; break; }
+        if (targetIndex + i <= 180 && imagesRef.current[targetIndex + i]) { targetIndex += i; break; }
+      }
+    }
     
-    // Scale context to match pixel ratio
-    context.scale(pixelRatio, pixelRatio);
+    const img = imagesRef.current[targetIndex];
+    if (!img) return;
 
-    const images: HTMLImageElement[] = [];
-    const airpods = { frame: 0 };
-
-    // Preload images
-    for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      img.src = currentFrame(i);
-      images.push(img);
+    let pixelRatio = window.devicePixelRatio || 1;
+    let canvasWidth = window.innerWidth * pixelRatio;
+    let canvasHeight = window.innerHeight * pixelRatio;
+    
+    // Maintain native resolution max limit of 1920x1080 to prevent upscaling blur
+    if (canvasWidth > 1920 || canvasHeight > 1080) {
+      const ratioW = 1920 / window.innerWidth;
+      const ratioH = 1080 / window.innerHeight;
+      pixelRatio = Math.min(ratioW, ratioH, pixelRatio);
+      canvasWidth = window.innerWidth * pixelRatio;
+      canvasHeight = window.innerHeight * pixelRatio;
     }
 
-    // Draw the first image as soon as it loads
-    images[0].onload = render;
-
-    function render() {
-      if (!context || !canvas || !images[airpods.frame]) return;
-      
-      const img = images[airpods.frame];
-      
-      // Calculate aspect ratio against the unscaled CSS dimensions (innerWidth/innerHeight)
-      const hRatio = window.innerWidth / img.width;
-      const vRatio = window.innerHeight / img.height;
-      const ratio = Math.max(hRatio, vRatio);
-      
-      const centerShift_x = (window.innerWidth - img.width * ratio) / 2;
-      const centerShift_y = (window.innerHeight - img.height * ratio) / 2;
-      
-      context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-      context.drawImage(
-        img, 
-        0, 0, img.width, img.height,
-        centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
-      );
+    if (canvas.width !== Math.floor(canvasWidth) || canvas.height !== Math.floor(canvasHeight)) {
+      canvas.width = Math.floor(canvasWidth);
+      canvas.height = Math.floor(canvasHeight);
+      context.scale(pixelRatio, pixelRatio);
     }
+    
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    // GSAP ScrollTrigger Animation
+    const hRatio = window.innerWidth / img.width;
+    const vRatio = window.innerHeight / img.height;
+    const ratio = Math.max(hRatio, vRatio);
+    
+    const centerShift_x = (window.innerWidth - img.width * ratio) / 2;
+    const centerShift_y = (window.innerHeight - img.height * ratio) / 2;
+    
+    context.drawImage(
+      img, 
+      0, 0, img.width, img.height,
+      centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
+    );
+  };
+
+  useEffect(() => {
+    if (!firstFrameLoaded) return;
+    
+    const frameCount = 180;
+    const animationTarget = { frame: 1 };
+    
+    // Initial render
+    renderFrame(1);
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top top',
-        end: '+=350%', // Pin for 3.5x screen heights
-        scrub: 0.5,    // Slight smoothing on the scrub
+        end: '+=250%', // Pin for 2.5x screen heights
+        scrub: true,   // Direct 1-to-1 sync, no smoothing lag
         pin: true,
       }
     });
 
-    tl.to(airpods, {
-      frame: frameCount - 1,
+    tl.to(animationTarget, {
+      frame: frameCount,
       snap: 'frame',
       ease: 'none',
-      onUpdate: render,
+      onUpdate: () => renderFrame(animationTarget.frame),
     });
-    
-    // Fade out the logo text slightly as they scroll down
-    tl.to(textRef.current, {
-      opacity: 0,
-      y: -50,
-      ease: 'power1.inOut'
-    }, 0); // Start at the same time as the frames
 
-    // Cleanup
+    const handleResize = () => renderFrame(animationTarget.frame);
+    window.addEventListener('resize', handleResize);
+
     return () => {
       ScrollTrigger.getAll().forEach(t => t.kill());
+      window.removeEventListener('resize', handleResize);
     };
-  }, []);
+  }, [firstFrameLoaded]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden">
+    <div ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
       <canvas
         ref={canvasRef}
         className="w-full h-full object-cover"
@@ -101,21 +152,6 @@ const ScrollHero = () => {
           filter: 'contrast(1.08) saturate(1.1) brightness(1.02)'
         }}
       />
-      
-      {/* Overlay Logo and Text */}
-      <div 
-        ref={textRef}
-        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4 z-10"
-      >
-        <img 
-          src="/new-main-logo.png" 
-          alt="7 Sketch Designers Logo" 
-          className="w-full max-w-[500px] md:max-w-[700px] lg:max-w-[900px] drop-shadow-2xl object-contain"
-        />
-        <p className="font-sans font-bold text-xs md:text-sm tracking-[0.2em] md:tracking-[0.4em] uppercase text-amber-500 mt-6 md:mt-10 max-w-2xl mx-auto drop-shadow-md text-center">
-          Architectural • Commercial Interior Fit-Out • PMC Consultancy
-        </p>
-      </div>
     </div>
   );
 };

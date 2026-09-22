@@ -111,80 +111,94 @@ export default function App() {
   const projects = [
     {
       id: 'gokarting',
-      category: 'commercial',
-      client: 'Go Karting Track',
-      location: 'Tathawade, Pune',
       title: 'Go Karting Recreational Hub',
-      type: 'Recreational Commercial',
-      scope: 'Reception Area, Café, Waiting Lounge, Branding & Turnkey Execution',
-      images: ['/project-p9-2.png', '/project-p9-3.png', '/project-p9-4.png', '/project-p10-4.png'],
-      details: 'High-traffic commercial venue designed for optimal visitor flow, acoustic comfort, custom venue branding, and heavy-duty wear resistance.'
-    },
-    {
-      id: 'christ-hall',
-      category: 'educational',
-      client: 'Christ College',
-      location: 'Pune Campus',
-      title: 'Christ College Training Hall & Library',
-      type: 'Educational Interior',
-      scope: 'Acoustic Planning, Custom Furniture, Lighting & Bookshelves',
-      images: ['/project-p20-1.jpg', '/project-p21-1.png', '/project-p15-2.jpg', '/project-p15-6.jpg'],
-      details: 'State-of-the-art auditorium and library setup focused on acoustic precision, quiet study zones, and long-lasting ergonomic furniture.'
+      category: 'Recreational Space',
+      type: 'Commercial Entertainment',
+      scope: 'Concept Design, Lighting, Spatial Planning',
+      details: 'An immersive recreational hub featuring dynamic neon styling, expansive arcade zones, and a bold, high-energy aesthetic.',
+      images: [
+        '/raftaar-exterior.jpg',
+        '/raftaar-aerial.jpg',
+        '/raftaar-lounge.png',
+        '/raftaar-neon.png',
+        '/raftaar-shelves.png',
+        '/raftaar-red.png',
+        '/raftaar-arcade.png',
+        '/raftaar-cafe.png'
+      ]
     },
     {
       id: 'suratwala',
-      category: 'commercial',
-      client: 'Suratwala Group',
-      location: 'Hinjawadi, Pune',
-      title: 'Suratwala Mark Plazzo Commercial Plaza',
+      title: 'Suratwala Mark Plazzo',
+      category: 'Commercial Building',
       type: 'Commercial Building',
-      scope: 'Interior Fit-out, Escalator Corridors & Corporate Offices',
-      images: ['/project-p25-1.png', '/project-p23-2.png', '/project-p23-3.png'],
-      details: 'Comprehensive architectural fit-out for a multi-tenant commercial landmark in Hinjawadi, Pune.'
+      scope: 'Interior Fit-out, Common Areas, Office Kitchen, Office Spaces',
+      details: 'A premium commercial fit-out featuring elegant fluted glass partitions, ergonomic open workspaces, and luxurious utility areas.',
+      images: [
+        '/suratwala-hallway.jpg',
+        '/suratwala-workspace-wide.jpg',
+        '/suratwala-workspace.jpg',
+        '/suratwala-cabin-wide.jpg',
+        '/suratwala-cabin-close.jpg',
+        '/suratwala-straight-desk.jpg',
+        '/suratwala-kitchen.jpg'
+      ]
     },
     {
       id: 'pall',
-      category: 'corporate',
-      client: 'Pall Corporations',
-      location: 'Pune Head Office',
-      title: 'Pall Corporations Corporate Office',
+      title: 'Pall Corporations',
+      category: 'Corporate Office Interior',
       type: 'Corporate Office Interior',
-      scope: 'Space Planning, PMC Management, Workstations & Turnkey Execution',
-      images: ['/project-p14-3.png', '/project-p14-4.png', '/project-p14-5.png', '/project-p14-6.png'],
-      details: 'Modern corporate head office designed with flexible workstation hubs, client meeting rooms, and executive suites.'
+      scope: 'Interior Design, Space Planning, Project Management, Turnkey Execution',
+      details: 'A turnkey corporate execution balancing open collaborative workstations with dedicated presentation lounges and distinctive geometric lighting.',
+      images: [
+        '/pall-hero.png',
+        '/pall-workstation-wide.png',
+        '/pall-workstation-close.png',
+        '/pall-lounge.png',
+        '/pall-cafe.png'
+      ]
     },
     {
       id: 'wilo',
-      category: 'corporate',
-      client: 'Wilo Mather and Platt',
-      location: 'Pune Experience Centre',
-      title: 'Wilo Sales Office & Experience Hub',
+      title: 'Wilo Sales Office',
+      category: 'Corporate Office',
       type: 'Corporate Office',
-      scope: 'Workstations, Executive Meeting Rooms & Reception',
-      images: ['/project-p16-3.png', '/project-p16-6.png', '/project-p16-2.png', '/project-p16-4.png'],
-      details: 'Sleek corporate office layout highlighting brand identity and energy-efficient lighting.'
+      scope: 'Corporate Interior, Workstations, Meeting Rooms, Reception',
+      details: 'A branded corporate interior featuring collaborative lounges, executive meeting rooms, and vibrant workspaces.',
+      images: [
+        '/wilo-lounge-wide.png',
+        '/wilo-meeting-room.png',
+        '/wilo-executive-cabin.png',
+        '/wilo-cafeteria.png',
+        '/wilo-collage.png'
+      ]
     },
     {
       id: 'rr-heritage',
-      category: 'hospitality',
-      client: 'R R Group',
-      location: 'Mahabaleshwar',
-      title: 'R R Heritage Luxury Resort',
-      type: 'Hospitality Resort Interior',
-      scope: 'Resort Interior Design, Guest Experience Planning & Turnkey Execution',
-      images: ['/project-p17-1.jpg', '/project-p2-1.jpg', '/project-p2-2.jpg', '/project-p17-4.jpg'],
-      details: 'Luxury hill-station resort interior combining warm natural wood, stone finishes, and panoramic balcony designs.'
+      title: 'R R Heritage – Mahabaleshwar',
+      category: 'Hospitality Interior',
+      type: 'Hospitality Interior',
+      scope: 'Resort Interior Design, Guest Experience Planning, Material Selection, Turnkey Execution',
+      details: 'A luxurious hospitality interior combining natural wood finishes, warm ambient lighting, and elegant multi-level suites.',
+      images: [
+        '/project-p17-1.jpg',
+        '/rr-exterior.png',
+        '/rr-loft-suite.png'
+      ]
     },
     {
-      id: 'tata-service',
-      category: 'commercial',
-      client: 'Tata Motors Authorized',
-      location: 'Moshi, Pune',
-      title: 'Tata Commercial Service Centre',
+      id: 'tata',
+      title: 'Tata Service Centre – Moshi',
+      category: 'Commercial Spaces',
       type: 'Commercial Service Centre',
-      scope: 'Space Planning, Turnkey Execution, Furniture & Finishing',
-      images: ['/project-p13-4.jpg'],
-      details: 'High-utility customer service hub with ergonomic lounge zones and durable industrial finishes.'
+      scope: 'Interior Design, Space Planning, Turnkey Execution, Project Management, Furniture & Finishing',
+      details: 'A premium commercial service centre highlighting bespoke furniture, modern space planning, and elegant ambient lighting.',
+      images: [
+        '/tata-desk-hero.png',
+        '/tata-lounge-chair.png',
+        '/tata-executive-desk.png'
+      ]
     }
   ];
 
@@ -215,10 +229,10 @@ export default function App() {
     },
     { 
       num: '04', 
-      stage: 'MODULE F German CNC Production', 
+      stage: 'In-House German CNC Production', 
       tag: 'Phase 4 • Manufacturing', 
       image: '/project-p11-3.jpg',
-      description: 'Off-site fabrication of modular desks, executive suites, and storage units at our MODULE F German CNC factory plant (50% faster completion).',
+      description: 'Off-site fabrication of modular desks, executive suites, and storage units at our in-house German CNC factory plant (50% faster completion).',
       deliverable: '10-Year Factory Warranted Furniture Set'
     },
     { 
@@ -508,7 +522,7 @@ export default function App() {
           </section>
 
           {/* INTERACTIVE EXECUTION BLUEPRINT */}
-          <section id="process" className="section-wrapper" style={{ background: 'var(--page-cream)', borderTop: '1px solid var(--hairline)', paddingTop: '64px', paddingBottom: '64px' }}>
+          <section id="process" className="section-wrapper" style={{ background: 'var(--page-cream)', borderTop: '1px solid var(--hairline)' }}>
             <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 32px auto' }}>
                 <span className="brand-badge">Creative Architecture Journey</span>
@@ -577,35 +591,43 @@ export default function App() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[60px] items-center" style={{ maxWidth: '1240px', margin: '0 auto' }}>
               <div>
                 <span className="brand-badge" style={{ background: 'rgba(194, 155, 56, 0.2)', color: 'var(--brand-gold)', borderColor: 'var(--brand-gold)' }}>In-House Manufacturing</span>
-                <h2 style={{ color: 'var(--walnut)', marginTop: '16px', marginBottom: '22px' }}>
-                  MODULE F Homes German CNC Factory
+                <h2 style={{ color: 'var(--walnut)', marginTop: '16px', marginBottom: '24px' }}>
+                  State-of-the-Art German CNC Manufacturing
                 </h2>
-                <p style={{ color: 'var(--text-secondary)', marginBottom: '32px' }}>
-                  Unlike traditional interior contractors who rely on slow on-site carpentry, 7 Sketch Designers is directly backed by our state-of-the-art **MODULE F Homes** manufacturing facility equipped with German CNC precision machinery.
+                <p style={{ color: 'var(--stone-text)', fontSize: '17px', lineHeight: '1.7', maxWidth: '580px', marginBottom: '36px' }}>
+                  Unlike traditional interior contractors who rely on slow on-site carpentry, 7 Sketch Designers operates our own state-of-the-art manufacturing facility equipped with German CNC precision machinery. We proudly manufacture and execute for our own clients, while also serving a network of valued associates—including Module F Homes and multiple other partners.
                 </p>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', marginBottom: '40px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '48px' }}>
                   <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
-                    <CheckCircle2 size={22} color="var(--brand-gold)" />
-                    <span style={{ fontSize: '15.5px', color: 'var(--walnut)', fontWeight: '600' }}>50% Faster Fit-Out Delivery (Precision Factory Cut)</span>
+                    <CheckCircle2 size={22} color="#C29B38" style={{ flexShrink: 0 }} />
+                    <span style={{ fontSize: '16px', color: 'var(--walnut)', fontWeight: '500' }}>50% Faster Fit-Out Delivery (Precision Factory Cut)</span>
                   </div>
                   <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
-                    <CheckCircle2 size={22} color="var(--brand-gold)" />
-                    <span style={{ fontSize: '15.5px', color: 'var(--walnut)', fontWeight: '600' }}>Zero On-Site Dust & Noise (Off-Site Pre-Fabrication)</span>
+                    <CheckCircle2 size={22} color="#C29B38" style={{ flexShrink: 0 }} />
+                    <span style={{ fontSize: '16px', color: 'var(--walnut)', fontWeight: '500' }}>Zero On-Site Dust & Noise (Off-Site Pre-Fabrication)</span>
                   </div>
                   <div style={{ display: 'flex', gap: '14px', alignItems: 'center' }}>
-                    <CheckCircle2 size={22} color="var(--brand-gold)" />
-                    <span style={{ fontSize: '15.5px', color: 'var(--walnut)', fontWeight: '600' }}>10-Year Factory Warranty on All Modular Woodwork</span>
+                    <CheckCircle2 size={22} color="#C29B38" style={{ flexShrink: 0 }} />
+                    <span style={{ fontSize: '16px', color: 'var(--walnut)', fontWeight: '500' }}>10-Year Factory Warranty on All Modular Woodwork</span>
                   </div>
                 </div>
 
-                <a href="#contact" onClick={(e) => { e.preventDefault(); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} className="btn-primary">
-                  Inquire About Modular Fit-Outs <ArrowRight size={16} />
+                <a href="#contact" onClick={(e) => { e.preventDefault(); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} className="btn-primary" style={{ display: 'inline-flex', padding: '14px 28px', alignItems: 'center', gap: '8px' }}>
+                  Inquire About Modular Fit-Outs <ArrowRight size={18} />
                 </a>
               </div>
 
-              <div className="luxury-card" style={{ padding: '12px', background: '#FFFFFF' }}>
-                <img src="/project-p20-1.jpg" alt="MODULE F High Res Precision Woodwork" style={{ width: '100%', height: '400px', objectFit: 'cover', borderRadius: '6px' }} />
+              <div style={{ position: 'relative', width: '100%', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
+                {/* Main Wide Image (The Anchor) */}
+                <div style={{ position: 'absolute', top: 0, right: 0, width: '92%', height: '480px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', zIndex: 1 }}>
+                  <img src="/cnc-factory-wide.jpg" alt="7 Sketch Designers CNC Factory Floor" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+                
+                {/* Overlapping Macro Image (The Floating Accent) */}
+                <div style={{ position: 'absolute', bottom: '10px', left: 0, width: '42%', height: '240px', borderRadius: '8px', overflow: 'hidden', border: '6px solid #FFFFFF', background: '#FFFFFF', zIndex: 2, boxShadow: '0 30px 60px rgba(62, 47, 35, 0.15)' }}>
+                  <img src="/cnc-factory-macro.jpg" alt="Precision CNC Edge Banding Machinery" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }} />
+                </div>
               </div>
             </div>
           </section>
@@ -631,7 +653,7 @@ export default function App() {
 
       
       {/* Contact Section */}
-      <section id="contact" className="section-wrapper" style={{ background: 'var(--section-cream)', padding: '100px 24px' }}>
+      <section id="contact" className="section-wrapper" style={{ background: 'var(--section-cream)' }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[60px] items-stretch">
             
@@ -764,7 +786,7 @@ export default function App() {
           </div>
 
           <div style={{ paddingTop: '24px', borderTop: '1px solid var(--hairline)', fontSize: '13.5px', color: 'var(--muted)', textAlign: 'center' }}>
-            © {new Date().getFullYear()} 7 Sketch Designers. Associated with MODULE F Homes.
+            © {new Date().getFullYear()} 7 Sketch Designers. All rights reserved.
           </div>
         </div>
       </footer>

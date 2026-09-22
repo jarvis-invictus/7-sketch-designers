@@ -26,7 +26,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
       ],
       linkText: 'Explore Architectural Service',
       heroProjectId: 'suratwala',
-      relatedProjectIds: ['suratwala', 'christ-hall', 'gokarting'],
+      relatedProjectIds: ['suratwala', 'gokarting'],
       processText: 'This service drives Phase 1 (Architectural Briefing & Spatial Planning) and Phase 2 (3D Photorealistic Visualization & Moodboard) of our Execution Blueprint.',
       formValue: 'architectural'
     },
@@ -60,7 +60,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
       ],
       linkText: 'Explore Interior Design Service',
       heroProjectId: 'wilo',
-      relatedProjectIds: ['wilo', 'rr-heritage', 'christ-hall'],
+      relatedProjectIds: ['wilo', 'rr-heritage'],
       processText: 'This service leads Phase 2 (3D Photorealistic Visualization & Moodboard) of our Execution Blueprint.',
       formValue: 'architectural' // Fallback to architectural since there's no interior option in the form
     },
@@ -72,13 +72,13 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
       capabilitiesTitle: 'Turnkey Fit-Out Scope',
       capabilities: [
         'Civil • Electrical • Flooring • Painting',
-        'Furniture (German CNC Factory MODULE F)',
+        'Furniture (In-House German CNC Factory)',
         'Complete MEP Coordination'
       ],
       linkText: 'Explore Turnkey Scope',
       heroProjectId: 'pall',
       relatedProjectIds: ['pall', 'wilo', 'tata-service'],
-      processText: 'This service executes Phase 4 (MODULE F German CNC Production) of our Execution Blueprint.',
+      processText: 'This service executes Phase 4 (In-House German CNC Production) of our Execution Blueprint.',
       formValue: 'turnkey'
     }
   ];

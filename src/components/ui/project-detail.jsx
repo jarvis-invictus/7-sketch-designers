@@ -53,10 +53,17 @@ export default function ProjectDetail({ project, onBack }) {
       
       {/* Hero Section */}
       <div className="relative h-[60vh] md:h-[70vh] w-full bg-black rounded-b-3xl overflow-hidden shadow-2xl">
+        {/* Blurred background layer */}
+        <img 
+          src={heroImage} 
+          alt={project.title + " background"} 
+          className="absolute inset-0 w-full h-full object-cover opacity-30 blur-xl"
+        />
+        {/* Full uncropped image */}
         <img 
           src={heroImage} 
           alt={project.title} 
-          className="absolute inset-0 w-full h-full object-cover opacity-70"
+          className="absolute inset-0 w-full h-full object-contain z-0"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
         

@@ -38,6 +38,7 @@
 }
 
 html {
+  scroll-behavior: smooth;
   font-size: 16px; /* Base font size for REM scaling */
 }
 
@@ -211,4 +212,13 @@ p {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--clay);
+}
+
+
+/* Form Input Focus States */
+input:focus, textarea:focus, select:focus {
+  border-color: var(--brand-gold) !important;
+  box-shadow: 0 0 0 3px rgba(198, 168, 124, 0.2) !important;
+  outline: none !important;
+  transition: all 0.2s ease;
 }
