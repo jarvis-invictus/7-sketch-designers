@@ -120,9 +120,9 @@ const ScrollHero = () => {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top top',
-        end: '+=250%', // Pin for 2.5x screen heights
+        end: 'bottom bottom', // Ends when bottom of 350vh container hits bottom of viewport
         scrub: true,   // Direct 1-to-1 sync, no smoothing lag
-        pin: true,
+        
       }
     });
 
@@ -143,15 +143,17 @@ const ScrollHero = () => {
   }, [firstFrameLoaded]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-screen bg-black overflow-hidden flex flex-col items-center justify-center">
-      <canvas
-        ref={canvasRef}
+    <div ref={containerRef} className="relative w-full bg-black" style={{ height: '350vh' }}>
+      <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col items-center justify-center">
+        <canvas
+          ref={canvasRef}
         className="w-full h-full object-cover"
         style={{
           imageRendering: 'high-quality',
           filter: 'contrast(1.08) saturate(1.1) brightness(1.02)'
         }}
       />
+      </div>
     </div>
   );
 };
