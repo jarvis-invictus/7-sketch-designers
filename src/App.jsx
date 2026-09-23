@@ -931,8 +931,11 @@ export default function App() {
             </div>
           </div>
 
-          <div style={{ paddingTop: '24px', borderTop: '1px solid var(--hairline)', fontSize: '13.5px', color: 'var(--muted)', textAlign: 'center' }}>
-            © {new Date().getFullYear()} 7 Sketch Designers. All rights reserved.
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4" style={{ paddingTop: '24px', borderTop: '1px solid var(--hairline)', fontSize: '13.5px', color: 'var(--muted)' }}>
+            <div>© {new Date().getFullYear()} 7 Sketch Designers. All rights reserved.</div>
+            <div style={{ fontSize: '12.5px' }}>
+              Designed & Developed by <a href="https://invictusai.site" target="_blank" rel="noreferrer" style={{ color: 'var(--brand-gold)', textDecoration: 'none', fontWeight: '500' }}>Invictus AI</a>
+            </div>
           </div>
         </div>
       </footer>
