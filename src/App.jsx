@@ -934,7 +934,7 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4" style={{ paddingTop: '24px', borderTop: '1px solid var(--hairline)', fontSize: '13.5px', color: 'var(--muted)' }}>
             <div>© {new Date().getFullYear()} 7 Sketch Designers. All rights reserved.</div>
             <div style={{ fontSize: '12.5px' }}>
-              Designed & Developed by <a href="https://invictusai.site" target="_blank" rel="noreferrer" style={{ color: 'var(--brand-gold)', textDecoration: 'none', fontWeight: '500' }}>Invictus AI</a>
+              Designed & Developed by <a href="https://invictusai.site" target="_blank" rel="noreferrer" className="text-[var(--brand-gold)] hover:text-white underline underline-offset-4 transition-colors font-semibold ml-1">Invictus AI</a>
             </div>
           </div>
         </div>
