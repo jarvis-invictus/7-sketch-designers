@@ -137,7 +137,7 @@ export function InfiniteMovingCards<
       <div ref={viewportRef} className="overflow-hidden">
         <motion.div
           ref={trackRef}
-          className="flex w-max py-1"
+          className="flex w-max py-4"
           style={{
             x: reduceMotion ? 0 : x,
             gap,
@@ -157,71 +157,46 @@ export function InfiniteMovingCards<
               <article
                 key={key}
                 className={cn(
-                  "shrink-0 overflow-hidden rounded-2xl border border-border bg-[#FFFFFF] shadow-sm transition-transform hover:-translate-y-0.5",
+                  "shrink-0 rounded-2xl border transition-transform hover:-translate-y-1",
                   cardClassName,
                 )}
                 style={{
-                  minWidth: "min(20rem, calc(100vw - 4rem))",
-                  maxWidth: 356,
-                  borderColor: 'var(--hairline)'
+                  minWidth: "min(22rem, calc(100vw - 4rem))",
+                  maxWidth: 420,
+                  borderColor: 'var(--hairline)',
+                  background: 'var(--card-neutral)',
+                  padding: '36px 32px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '24px'
                 }}
               >
-                {item.image ? (
-                  <div className="h-44 w-full overflow-hidden border-b border-border" style={{ borderColor: 'var(--hairline)' }}>
-                    <img
-                      src={item.image}
-                      alt={item.title ?? "Card image"}
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                    />
+                {typeof item.rating === "number" ? (
+                  <div className="flex items-center gap-1 text-sm">
+                    {renderStars(item.rating)}
                   </div>
                 ) : null}
-                <div className="space-y-3 p-6">
-                  {typeof item.rating === "number" ? (
-                    <div className="flex items-center gap-1 text-sm">
-                      {renderStars(item.rating)}
-                    </div>
-                  ) : null}
-                  {item.description ? (
-                    <p className="text-[15px] leading-relaxed text-[var(--stone-text)] italic">
-                      "{item.description}"
-                    </p>
-                  ) : null}
 
-                  {item.avatar || item.name || item.role ? (
-                    <div className="flex items-center gap-3 pt-3">
-                      {item.avatar ? (
-                        <div style={{
-                          width: '42px',
-                          height: '42px',
-                          borderRadius: '50%',
-                          background: 'var(--accent-soft)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          color: 'var(--clay)',
-                          fontWeight: 'bold',
-                          fontSize: '16px',
-                          flexShrink: 0
-                        }}>
-                          {item.name ? item.name.charAt(0).toUpperCase() : 'C'}
-                        </div>
-                      ) : null}
-                      <div>
-                        {item.name ? (
-                          <p className="text-[15px] font-semibold text-[var(--walnut)]">
-                            {item.name}
-                          </p>
-                        ) : null}
-                        {item.role ? (
-                          <p className="text-[13px] text-[var(--text-muted)] mt-1">
-                            {item.role}
-                          </p>
-                        ) : null}
-                      </div>
-                    </div>
-                  ) : null}
-                </div>
+                {item.description ? (
+                  <p className="leading-relaxed" style={{ fontSize: '17px', color: 'var(--stone-text)', fontStyle: 'italic', flexGrow: 1 }}>
+                    "{item.description}"
+                  </p>
+                ) : null}
+
+                {item.name || item.role ? (
+                  <div className="pt-2 border-t" style={{ borderColor: 'var(--hairline)' }}>
+                    {item.name ? (
+                      <p className="font-semibold" style={{ fontSize: '16px', color: 'var(--walnut)' }}>
+                        {item.name}
+                      </p>
+                    ) : null}
+                    {item.role ? (
+                      <p className="mt-1" style={{ fontSize: '14px', color: 'var(--text-muted)' }}>
+                        {item.role}
+                      </p>
+                    ) : null}
+                  </div>
+                ) : null}
               </article>
             );
           })}
@@ -230,8 +205,14 @@ export function InfiniteMovingCards<
 
       {showGradientMask ? (
         <>
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[var(--page-cream)] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[var(--page-cream)] to-transparent" />
+          <div 
+            className="pointer-events-none absolute inset-y-0 left-0 w-32" 
+            style={{ background: 'linear-gradient(to right, var(--page-cream) 0%, transparent 100%)' }}
+          />
+          <div 
+            className="pointer-events-none absolute inset-y-0 right-0 w-32" 
+            style={{ background: 'linear-gradient(to left, var(--page-cream) 0%, transparent 100%)' }}
+          />
         </>
       ) : null}
     </div>
