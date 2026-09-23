@@ -19,7 +19,13 @@ export default function AboutSection() {
           {/* Right: Content & Stats */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
             <div>
-              <img src="/main-logo.png" alt="7 Sketch Designers Logo" style={{ height: '45px', objectFit: 'contain', marginBottom: '20px' }} />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
+                <img src="/pure-icon-logo.png" alt="7 Sketch Designers" style={{ height: '50px', objectFit: 'contain' }} />
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: '600', color: 'var(--walnut)', lineHeight: '1.2' }}>Sketch Designer's</span>
+                  <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--stone-text)', marginTop: '2px' }}>Architecture, Interior & Landscape Consultant</span>
+                </div>
+              </div>
               <h2 style={{ marginBottom: '24px', color: 'var(--walnut)' }}>About Our Studio</h2>
               <p style={{ fontSize: '17px', color: 'var(--stone-text)', lineHeight: '1.8', maxWidth: '600px' }}>
                 At 7 Sketch Designers, we are a multidisciplinary Architectural, Interior Design & Project Management Consultancy firm with over 12 years of industry experience. We specialize in delivering world-class commercial and corporate spaces that combine functionality, innovation, and uncompromising quality.
