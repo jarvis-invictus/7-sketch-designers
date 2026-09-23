@@ -100,7 +100,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
   }, [emblaApi]);
 
   const scrollNext = useCallback(() => {
-    if (emblaApi) console.log("Next clicked"); emblaApi.scrollNext();
+    if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
     useEffect(() => {

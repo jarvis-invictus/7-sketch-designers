@@ -42,13 +42,9 @@ export default function PartnerSection() {
                 <Building2 size={20} color="var(--clay-deep)" strokeWidth={1.5} style={{ flexShrink: 0 }} />
                 <span>Manufacturing Associate</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--stone-text)', fontSize: '15px' }}>
-                <User size={20} color="var(--clay-deep)" strokeWidth={1.5} style={{ flexShrink: 0 }} />
-                <span>Host: [Pending Name]</span>
-              </div>
               <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', color: 'var(--stone-text)', fontSize: '15px' }}>
                 <MapPin size={20} color="var(--clay-deep)" strokeWidth={1.5} style={{ flexShrink: 0, marginTop: '2px' }} />
-                <span style={{ lineHeight: '1.4' }}>Pune, Maharashtra [Pending Exact Address]</span>
+                <span style={{ lineHeight: '1.4' }}>Power Point Building, Office No. 106 (Above Smoor Lounge), Lane No. 6, Koregaon Park, Pune 411006, Maharashtra</span>
               </div>
             </div>
           </div>

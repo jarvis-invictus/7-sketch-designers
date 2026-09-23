@@ -9,6 +9,7 @@ const ScrollHero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
   const imagesRef = useRef<HTMLImageElement[]>([]);
+  const mobileBgCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [firstFrameLoaded, setFirstFrameLoaded] = useState(false);
 
   useEffect(() => {
@@ -93,18 +94,56 @@ const ScrollHero = () => {
     
     context.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
-    const hRatio = window.innerWidth / img.width;
-    const vRatio = window.innerHeight / img.height;
-    const ratio = Math.max(hRatio, vRatio);
-    
-    const centerShift_x = (window.innerWidth - img.width * ratio) / 2;
-    const centerShift_y = (window.innerHeight - img.height * ratio) / 2;
-    
-    context.drawImage(
-      img, 
-      0, 0, img.width, img.height,
-      centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
-    );
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Mobile: show the COMPLETE frame (contain-fit, no cropping) so the room
+      // reveal reads the same way it does on desktop, instead of a cropped sliver.
+      // A small blurred cover-fit copy of the same frame fills the remaining
+      // space above/below so there is no dead flat-color bar.
+      if (!mobileBgCanvasRef.current) {
+        mobileBgCanvasRef.current = document.createElement('canvas');
+      }
+      const bgCanvas = mobileBgCanvasRef.current;
+      const bgCtx = bgCanvas.getContext('2d');
+      if (bgCtx) {
+        const smallW = 64;
+        const smallH = Math.max(1, Math.round(64 * (window.innerHeight / window.innerWidth)));
+        bgCanvas.width = smallW;
+        bgCanvas.height = smallH;
+        const bgCoverRatio = Math.max(smallW / img.width, smallH / img.height);
+        const bgW = img.width * bgCoverRatio;
+        const bgH = img.height * bgCoverRatio;
+        bgCtx.clearRect(0, 0, smallW, smallH);
+        bgCtx.drawImage(img, (smallW - bgW) / 2, (smallH - bgH) / 2, bgW, bgH);
+
+        context.save();
+        context.filter = 'blur(14px) brightness(0.72)';
+        context.drawImage(bgCanvas, 0, 0, smallW, smallH, 0, 0, window.innerWidth, window.innerHeight);
+        context.restore();
+      }
+
+      const containRatio = Math.min(window.innerWidth / img.width, window.innerHeight / img.height);
+      const fw = img.width * containRatio;
+      const fh = img.height * containRatio;
+      const fx = (window.innerWidth - fw) / 2;
+      const fy = (window.innerHeight - fh) / 2;
+      context.drawImage(img, 0, 0, img.width, img.height, fx, fy, fw, fh);
+    } else {
+      // Desktop: unchanged cover-fit behavior.
+      const hRatio = window.innerWidth / img.width;
+      const vRatio = window.innerHeight / img.height;
+      const ratio = Math.max(hRatio, vRatio);
+
+      const centerShift_x = (window.innerWidth - img.width * ratio) / 2;
+      const centerShift_y = (window.innerHeight - img.height * ratio) / 2;
+
+      context.drawImage(
+        img,
+        0, 0, img.width, img.height,
+        centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
+      );
+    }
   };
 
   useEffect(() => {

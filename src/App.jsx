@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useReliableInView } from './hooks/useReliableInView';
 import { motion } from 'framer-motion';
 import ScrollHero from './components/ui/scroll-hero';
 import ProjectsPortfolio from './components/ui/projects-portfolio';
@@ -6,7 +7,7 @@ import { officialServicesData } from './officialServicesData';
 import { 
   Building2, Phone, Mail, MapPin, ChevronRight, CheckCircle2, 
   Layers, ArrowLeft, ArrowRight, Calculator, Compass, Sparkles, 
-  ChevronDown, Home
+  ChevronDown, Home, Menu, X
 } from 'lucide-react';
 
 import AboutSection from './components/ui/about-section';
@@ -35,15 +36,62 @@ const ProcessIllustrations = [
   Phase5Illustration
 ];
 
+function ProcessBlueprintCard({ item, idx }) {
+  const [ref, isInView] = useReliableInView(0.15);
+  return (
+    <motion.div 
+      ref={ref}
+      style={{ background: 'var(--card-neutral)', padding: '24px 32px', borderRadius: '12px', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
+      whileHover={{ y: -4, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-[48px] items-center">
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '14px' }}>
+            <span style={{ fontSize: '28px', fontWeight: '800', color: 'var(--brand-gold)', lineHeight: 1 }}>{item.num}</span>
+            <span className="brand-badge">{item.tag}</span>
+          </div>
+          <h3 style={{ marginBottom: '16px' }}>
+            {item.stage}
+          </h3>
+          <p style={{ marginBottom: '28px' }}>
+            {item.description}
+          </p>
+
+          <div style={{ background: '#FFFFFF', padding: '20px 24px', borderRadius: '8px', borderLeft: '4px solid var(--brand-gold)', boxShadow: 'var(--shadow-sm)' }}>
+            <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--brand-gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>
+              Verified Stage Deliverable
+            </div>
+            <div style={{ fontSize: '16px', fontWeight: '700', color: 'var(--walnut)' }}>
+              {item.deliverable}
+            </div>
+          </div>
+        </div>
+
+        <div style={{ position: 'relative' }}>
+          {(() => {
+            const Illustration = ProcessIllustrations[idx];
+            return <Illustration />;
+          })()}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
+  const [showHeroLandingLogo, setShowHeroLandingLogo] = useState(true);
   const [currentView, setCurrentView] = useState('home'); // 'home' | 'service-detail' | 'project-detail'
   const [selectedServiceId, setSelectedServiceId] = useState('architectural-consultancy');
   const [selectedProjectId, setSelectedProjectId] = useState(null);
 
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   // Process Steps are now sequentially mapped, no active step state needed.
 
@@ -54,6 +102,7 @@ export default function App() {
       // Hero section pins for 350% of viewport height
       const heroScrollDistance = window.innerHeight * 3.5;
       setIsScrolledPastHero(window.scrollY > heroScrollDistance);
+      setShowHeroLandingLogo(window.scrollY < 24);
     };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
@@ -312,7 +361,7 @@ export default function App() {
         </div>
 
         {/* Center Nav Links */}
-        <nav style={{ display: 'flex', gap: '24px', alignItems: 'center', flexShrink: 1 }}>
+        <nav className="hidden md:flex" style={{ gap: '24px', alignItems: 'center', flexShrink: 1 }}>
           
           {/* Services Dropdown */}
           <div 
@@ -403,24 +452,138 @@ export default function App() {
             )}
           </div>
           
-          <a href="#portfolio" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Projects</a>
-          <a href="#process" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Process</a>
-          <a href="#about" onClick={() => setCurrentView('home')} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>About</a>
-          <a href="#contact" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Contact</a>
+          <a href="#portfolio" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Projects</a>
+          <a href="#process" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('process')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Process</a>
+          <a href="#about" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>About</a>
+          <a href="#contact" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 100); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '14px', fontWeight: '500', whiteSpace: 'nowrap' }}>Contact</a>
         </nav>
 
         {/* Right Action CTAs */}
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexShrink: 0 }}>
+        <div className="hidden md:flex" style={{ gap: '16px', alignItems: 'center', flexShrink: 0 }}>
           {/* Estimator hidden because modal is not yet built */}
           <a 
             href="#contact" 
-            onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} 
+            onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 100); }} 
             className="btn-primary" 
             style={{ padding: '12px 24px', fontSize: '14px', whiteSpace: 'nowrap' }}
           >
             Book Consultation
           </a>
         </div>
+
+        {/* Mobile Hamburger Button */}
+        <div className="flex md:hidden">
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--walnut)',
+              cursor: 'pointer',
+              padding: '8px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minHeight: '44px',
+              minWidth: '44px'
+            }}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Panel */}
+        {isMobileMenuOpen && (
+          <div 
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              background: 'var(--page-cream)',
+              borderTop: '1px solid var(--hairline)',
+              height: 'calc(100vh - 74px)',
+              overflowY: 'auto',
+              padding: '24px 5%',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '16px',
+            }}
+            className="md:hidden"
+          >
+            {/* Mobile Services */}
+            <div>
+              <button 
+                onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  background: 'none',
+                  border: 'none',
+                  color: 'var(--walnut)',
+                  fontSize: '18px',
+                  fontWeight: '600',
+                  padding: '12px 0',
+                  minHeight: '44px',
+                  fontFamily: 'var(--font-display)',
+                  cursor: 'pointer'
+                }}
+              >
+                Services <ChevronDown size={20} style={{ transform: isMobileServicesOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s' }} />
+              </button>
+              
+              {isMobileServicesOpen && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingLeft: '16px', marginTop: '8px' }}>
+                  {officialServicesData.map(s => {
+                    let Icon = Compass;
+                    if (s.id === 'architectural-consultancy') Icon = Compass;
+                    if (s.id === 'project-management-consultancy') Icon = Layers;
+                    if (s.id === 'turnkey-interior-execution') Icon = Building2;
+                    if (s.id === 'interior-design') Icon = Home;
+                    return (
+                      <div
+                        key={s.id}
+                        onClick={() => { setIsMobileMenuOpen(false); setIsMobileServicesOpen(false); navigateToService(s.id); }}
+                        style={{
+                          padding: '12px',
+                          display: 'flex',
+                          gap: '16px',
+                          alignItems: 'center',
+                          minHeight: '44px',
+                          cursor: 'pointer',
+                          borderRadius: '8px'
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '6px', background: 'var(--accent-soft)', color: 'var(--walnut)' }}>
+                          <Icon size={16} />
+                        </div>
+                        <div style={{ fontSize: '15px', fontWeight: '500', color: 'var(--stone-text)' }}>{s.title}</div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            <a href="#portfolio" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setCurrentView('home'); setTimeout(() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '18px', fontWeight: '600', padding: '12px 0', minHeight: '44px', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center' }}>Projects</a>
+            <a href="#process" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setCurrentView('home'); setTimeout(() => document.getElementById('process')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '18px', fontWeight: '600', padding: '12px 0', minHeight: '44px', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center' }}>Process</a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setCurrentView('home'); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '18px', fontWeight: '600', padding: '12px 0', minHeight: '44px', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center' }}>About</a>
+            <a href="#contact" onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setCurrentView('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 100); }} style={{ color: 'var(--walnut)', textDecoration: 'none', fontSize: '18px', fontWeight: '600', padding: '12px 0', minHeight: '44px', fontFamily: 'var(--font-display)', display: 'flex', alignItems: 'center' }}>Contact</a>
+            
+            <div style={{ marginTop: 'auto', paddingTop: '24px', paddingBottom: '24px' }}>
+              <a 
+                href="#contact" 
+                onClick={(e) => { e.preventDefault(); setIsMobileMenuOpen(false); setCurrentView('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 100); }} 
+                className="btn-primary" 
+                style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '14px', fontSize: '16px', minHeight: '44px', width: '100%' }}
+              >
+                Book Consultation
+              </a>
+            </div>
+          </div>
+        )}
       </header>
 
       {/* RENDER VIEW SWITCHER */}
@@ -504,6 +667,28 @@ export default function App() {
           {/* SCROLL-BASED GHOST BUILD HERO */}
           <ScrollHero />
 
+          {currentView === 'home' && (
+            <div
+              style={{
+                position: 'fixed',
+                inset: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 5,
+                pointerEvents: 'none',
+                opacity: showHeroLandingLogo ? 1 : 0,
+                transition: 'opacity 0.5s ease',
+              }}
+            >
+              <img
+                src="/hero-landing-logo.png"
+                alt="7 Sketch Designers"
+                style={{ width: 'min(68vw, 620px)', height: 'auto', objectFit: 'contain' }}
+              />
+            </div>
+          )}
+
           <AboutSection />
 
           {/* OFFICIAL SERVICES SECTION */}
@@ -535,46 +720,7 @@ export default function App() {
               {/* Sequential Process Reveal */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 {creativeExecutionProcess.map((item, idx) => (
-                  <motion.div 
-                    key={idx}
-                    style={{ background: 'var(--card-neutral)', padding: '24px 32px', borderRadius: '12px', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.1, ease: 'easeOut' }}
-                    whileHover={{ y: -4, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
-                  >
-                    <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-8 lg:gap-[48px] items-center">
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '14px' }}>
-                          <span style={{ fontSize: '28px', fontWeight: '800', color: 'var(--brand-gold)', lineHeight: 1 }}>{item.num}</span>
-                          <span className="brand-badge">{item.tag}</span>
-                        </div>
-                        <h3 style={{ marginBottom: '16px' }}>
-                          {item.stage}
-                        </h3>
-                        <p style={{ marginBottom: '28px' }}>
-                          {item.description}
-                        </p>
-
-                        <div style={{ background: '#FFFFFF', padding: '20px 24px', borderRadius: '8px', borderLeft: '4px solid var(--brand-gold)', boxShadow: 'var(--shadow-sm)' }}>
-                          <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--brand-gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '4px' }}>
-                            Verified Stage Deliverable
-                          </div>
-                          <div style={{ fontSize: '16px', fontWeight: '700', color: 'var(--walnut)' }}>
-                            {item.deliverable}
-                          </div>
-                        </div>
-                      </div>
-
-                      <div style={{ position: 'relative' }}>
-                        {(() => {
-                          const Illustration = ProcessIllustrations[idx];
-                          return <Illustration />;
-                        })()}
-                      </div>
-                    </div>
-                  </motion.div>
+                  <ProcessBlueprintCard key={idx} item={item} idx={idx} />
                 ))}
               </div>
             </div>
@@ -613,7 +759,7 @@ export default function App() {
                   </div>
                 </div>
 
-                <a href="#contact" onClick={(e) => { e.preventDefault(); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} className="btn-primary" style={{ display: 'inline-flex', padding: '14px 28px', alignItems: 'center', gap: '8px' }}>
+                <a href="#contact" onClick={(e) => { e.preventDefault(); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 100); }} className="btn-primary" style={{ display: 'inline-flex', padding: '14px 28px', alignItems: 'center', gap: '8px' }}>
                   Inquire About Modular Fit-Outs <ArrowRight size={18} />
                 </a>
               </div>
@@ -747,10 +893,10 @@ export default function App() {
               <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '24px', fontFamily: 'var(--font-display)', fontWeight: '600' }}>Quick Links</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14.5px' }}>
                 <a href="#services" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Services</a>
-                <a href="#portfolio" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Projects</a>
-                <a href="#process" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Process</a>
-                <a href="#about" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>About</a>
-                <a href="#contact" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }), 100); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Contact</a>
+                <a href="#portfolio" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Projects</a>
+                <a href="#process" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('process')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Process</a>
+                <a href="#about" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>About</a>
+                <a href="#contact" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 100); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Contact</a>
               </div>
             </div>
 

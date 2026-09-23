@@ -1,8 +1,12 @@
 import React from 'react';
 import { Target, Eye, Gem } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useReliableInView } from '../../hooks/useReliableInView';
 
 export default function MissionVision() {
+  const [missionRef, isMissionInView] = useReliableInView();
+  const [visionRef, isVisionInView] = useReliableInView();
+  const [valuesRef, isValuesInView] = useReliableInView();
   return (
     <section id="mission-vision" className="section-wrapper" style={{ background: 'var(--page-cream)', borderBottom: '1px solid var(--hairline)' }}>
       <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
@@ -10,11 +14,11 @@ export default function MissionVision() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           
           {/* Mission */}
-          <motion.div 
+          <motion.div ref={missionRef}
+            
             style={{ background: 'var(--card-neutral)', padding: '40px', display: 'flex', flexDirection: 'column', borderRadius: 'var(--radius-lg)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={isMissionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0, ease: 'easeOut' }}
             whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
           >
@@ -39,11 +43,11 @@ export default function MissionVision() {
           </motion.div>
 
           {/* Vision (Accent Card) */}
-          <motion.div 
+          <motion.div ref={visionRef}
+            
             style={{ background: 'linear-gradient(180deg, var(--blush-start) 0%, var(--blush-end) 100%)', padding: '40px', display: 'flex', flexDirection: 'column', borderRadius: 'var(--radius-lg)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={isVisionInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
             whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
           >
@@ -57,11 +61,11 @@ export default function MissionVision() {
           </motion.div>
 
           {/* Core Values */}
-          <motion.div 
+          <motion.div ref={valuesRef}
+            
             style={{ background: 'var(--card-neutral)', padding: '40px', display: 'flex', flexDirection: 'column', borderRadius: 'var(--radius-lg)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={isValuesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }}
             whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
           >

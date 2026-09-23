@@ -1,8 +1,29 @@
 import React from 'react';
 import { Check } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useReliableInView } from '../../hooks/useReliableInView';
+
+function BenefitItem({ reason, idx }) {
+  const [ref, isInView] = useReliableInView();
+  return (
+    <motion.div 
+      ref={ref}
+      style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px', borderRadius: 'var(--radius-sm)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={{ duration: 0.5, delay: idx * 0.1, ease: 'easeOut' }}
+      whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
+    >
+      <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--card-neutral)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: '1px solid var(--hairline)' }}>
+        <Check size={14} color="var(--clay)" strokeWidth={2.5} />
+      </div>
+      <span style={{ fontSize: '15.5px', color: 'var(--walnut)', fontWeight: '500' }}>{reason}</span>
+    </motion.div>
+  );
+}
 
 export default function WhyChooseUs() {
+  const [imgRef, isImgInView] = useReliableInView();
   const reasons = [
     '12+ Years Experience',
     'Dedicated Project Managers',
@@ -23,10 +44,10 @@ export default function WhyChooseUs() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-20 items-center">
           
           <motion.div 
+            ref={imgRef}
             style={{ padding: '12px', background: 'var(--card-neutral)', borderRadius: 'var(--radius-lg)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={isImgInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0, ease: 'easeOut' }}
             whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
           >
@@ -46,20 +67,7 @@ export default function WhyChooseUs() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
               {reasons.map((reason, idx) => (
-                <motion.div 
-                  key={idx} 
-                  style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '8px', borderRadius: 'var(--radius-sm)', boxShadow: '0px 0px 0px rgba(0,0,0,0)' }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1, ease: 'easeOut' }}
-                  whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
-                >
-                  <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--card-neutral)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, border: '1px solid var(--hairline)' }}>
-                    <Check size={14} color="var(--clay)" strokeWidth={2.5} />
-                  </div>
-                  <span style={{ fontSize: '15.5px', color: 'var(--walnut)', fontWeight: '500' }}>{reason}</span>
-                </motion.div>
+                <BenefitItem key={idx} reason={reason} idx={idx} />
               ))}
             </div>
           </div>

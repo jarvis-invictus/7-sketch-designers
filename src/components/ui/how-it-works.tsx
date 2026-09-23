@@ -2,6 +2,7 @@
 
 import React from "react";
 import { LazyMotion, domAnimation, m } from "framer-motion";
+import { useReliableInView } from "../../hooks/useReliableInView";
 
 interface CardProps {
   number: string;
@@ -131,6 +132,8 @@ export default function HowItWorks({
     }
   };
 
+  const [ref, isInView] = useReliableInView(0.15);
+
   return (
     <LazyMotion features={domAnimation}>
       <div
@@ -146,10 +149,10 @@ export default function HowItWorks({
 
         <div className="max-w-7xl mx-auto relative z-10">
           <m.div
+            ref={ref}
             variants={containerVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }} // Trigger when scrolling into view
+            animate={isInView ? "visible" : "hidden"}
             className="relative w-full max-w-[1200px] mx-auto flex flex-col space-y-12 md:space-y-0 md:block h-auto md:h-[var(--md-height)]"
             style={{ "--md-height": `${height}px` } as React.CSSProperties}
           >
