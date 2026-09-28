@@ -195,7 +195,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
         </div>
       </div>
 
-      <div className="embla" ref={emblaRef} style={{ overflow: 'hidden' }}>
+      <div className="embla" ref={emblaRef} style={{ overflow: 'hidden', maskImage: 'linear-gradient(to right, black calc(100% - 48px), transparent 100%)', WebkitMaskImage: 'linear-gradient(to right, black calc(100% - 48px), transparent 100%)' }}>
         <div className="embla__container" style={{ display: 'flex', }}>
           <style dangerouslySetInnerHTML={{__html: `
             .embla__container {
@@ -235,7 +235,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
                 {service.description}
               </p>
 
-              <div className="bg-transparent p-0 md:bg-[#FFFFFF] md:p-[18px] rounded-[6px] mb-[28px] flex-grow">
+              <div className="bg-transparent p-0 md:bg-[#FFFFFF] md:p-[18px] rounded-[6px] mb-[28px]">
                 <div className="text-[11px] md:text-[12px] font-bold text-[var(--clay)] uppercase mb-[8px] tracking-[1px]">{service.capabilitiesTitle}</div>
                 <div className="text-[14px] md:text-[13.5px] flex flex-col gap-[6px] text-[var(--stone-text)]">
                   {service.capabilities.map((cap, i) => (
@@ -247,7 +247,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
                 </div>
               </div>
 
-              <button onClick={() => setSelectedService(service)} className="btn-primary w-full flex justify-center mt-auto h-[48px] md:h-auto text-[15px] items-center">
+              <button onClick={() => setSelectedService(service)} className="btn-primary w-full flex justify-center mt-auto min-h-[48px] py-[12px] md:py-[13px] md:h-auto text-[15px] items-center">
                 {service.linkText} <ArrowRight size={16} />
               </button>
               </div>
