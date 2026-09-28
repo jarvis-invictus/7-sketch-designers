@@ -31,10 +31,12 @@
   --shadow-hover: 0 16px 48px rgba(62, 47, 35, 0.08);
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 html {
