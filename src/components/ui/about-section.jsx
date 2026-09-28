@@ -81,7 +81,7 @@ export default function AboutSection() {
               </div>
 
               <div style={{ background: '#FFFFFF', border: '1px solid var(--hairline)', padding: '24px', borderRadius: 'var(--radius-lg)', display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <div style={{ fontSize: '42px', fontFamily: 'var(--font-display)', fontWeight: '500', color: 'var(--brand-gold)', lineHeight: 1 }}>06</div>
+                <div style={{ fontSize: '42px', fontFamily: 'var(--font-display)', fontWeight: '500', color: 'var(--brand-gold)', lineHeight: 1 }}>05</div>
                 <div>
                   <div style={{ fontWeight: '600', color: 'var(--walnut)', fontSize: '15px', marginBottom: '2px' }}>Professionals</div>
                   <div style={{ color: 'var(--stone-text)', fontSize: '13px' }}>Dedicated Team</div>
