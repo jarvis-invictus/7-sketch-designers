@@ -391,7 +391,7 @@ export default function App() {
         </div>
 
         {/* Center Nav Links */}
-        <nav className="hidden md:flex" style={{ gap: '24px', alignItems: 'center', flexShrink: 1 }}>
+        <nav className="hidden xl:flex" style={{ gap: '24px', alignItems: 'center', flexShrink: 1 }}>
           
           {/* Services Dropdown */}
           <div 
@@ -489,7 +489,7 @@ export default function App() {
         </nav>
 
         {/* Right Action CTAs */}
-        <div className="hidden md:flex" style={{ gap: '16px', alignItems: 'center', flexShrink: 0 }}>
+        <div className="hidden xl:flex" style={{ gap: '16px', alignItems: 'center', flexShrink: 0 }}>
           {/* Estimator hidden because modal is not yet built */}
           <a 
             href="#contact" 
@@ -502,7 +502,7 @@ export default function App() {
         </div>
 
         {/* Mobile Hamburger Button */}
-        <div className="flex md:hidden">
+        <div className="flex xl:hidden">
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             style={{
