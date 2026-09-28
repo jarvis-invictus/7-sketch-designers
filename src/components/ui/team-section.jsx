@@ -41,10 +41,10 @@ export default function TeamSection() {
         </div>
 
         {/* Team Members */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-12 max-w-[900px] mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 md:gap-x-8 gap-y-10 md:gap-y-12 max-w-[900px] mx-auto">
           {team.map((member, idx) => (
             <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{ width: '140px', height: '140px', borderRadius: '50%', background: 'var(--section-cream)', margin: '0 auto 20px auto', border: '1px solid var(--hairline)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.04)' }}>
+              <div className="w-[100px] h-[100px] md:w-[140px] md:h-[140px]" style={{ borderRadius: '50%', background: 'var(--section-cream)', margin: '0 auto 20px auto', border: '1px solid var(--hairline)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', boxShadow: '0 4px 16px rgba(0,0,0,0.04)' }}>
                 {member.image ? (
                   <img src={member.image} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
                 ) : (
@@ -53,8 +53,8 @@ export default function TeamSection() {
                   </span>
                 )}
               </div>
-              <h4 style={{ fontSize: '20px', marginBottom: '6px', color: 'var(--walnut)', fontFamily: 'var(--font-display)' }}>{member.name}</h4>
-              <p style={{ fontSize: '14px', color: 'var(--stone-text)' }}>{member.role}</p>
+              <h4 className="text-[16px] md:text-[20px]" style={{ marginBottom: '6px', color: 'var(--walnut)', fontFamily: 'var(--font-display)' }}>{member.name}</h4>
+              <p className="text-[12px] md:text-[14px]" style={{ color: 'var(--stone-text)' }}>{member.role}</p>
             </div>
           ))}
         </div>

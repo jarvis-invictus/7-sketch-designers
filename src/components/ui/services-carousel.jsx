@@ -37,13 +37,16 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
       description: 'Professional PMC service providing total control over planning, budget, execution, monitoring, and quality control.',
       capabilitiesTitle: '5 Core Pillars',
       capabilities: [
-        'Planning • Budget • Execution',
-        'Monitoring • Quality Control',
+        'Planning',
+        'Budget',
+        'Execution',
+        'Monitoring',
+        'Quality Control',
         '12-Point Detailed Scope Governance'
       ],
       linkText: 'Explore PMC Scope',
       heroImageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop',
-      relatedProjectIds: ['rr-heritage', 'suratwala', 'tata-service'],
+      relatedProjectIds: ['rr-heritage', 'suratwala', 'tata'],
       processText: 'This service governs Phase 5 (On-Site PMC Audits & Handover) of our Execution Blueprint.',
       formValue: 'pmc'
     },
@@ -71,13 +74,16 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
       description: 'Single-point accountability for civil works, electricals, custom modular furniture, flooring, painting, and MEP.',
       capabilitiesTitle: 'Turnkey Fit-Out Scope',
       capabilities: [
-        'Civil • Electrical • Flooring • Painting',
+        'Civil',
+        'Electrical',
+        'Flooring',
+        'Painting',
         'Furniture (In-House German CNC Factory)',
         'Complete MEP Coordination'
       ],
       linkText: 'Explore Turnkey Scope',
       heroProjectId: 'pall',
-      relatedProjectIds: ['pall', 'wilo', 'tata-service'],
+      relatedProjectIds: ['pall', 'wilo', 'tata'],
       processText: 'This service executes Phase 4 (In-House German CNC Production) of our Execution Blueprint.',
       formValue: 'turnkey'
     }
@@ -140,6 +146,55 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
 
   return (
     <div className="services-carousel-wrapper">
+            {/* Mobile Pagination (Phones only) */}
+      <div className="flex md:hidden justify-between items-center mb-4 px-1">
+        <div style={{ fontSize: '15px', fontWeight: '500', color: 'var(--stone-text)' }}>
+          {selectedIndex + 1} / {scrollSnaps.length}
+        </div>
+        <div className="flex gap-3">
+          <button 
+            type="button" 
+            onClick={scrollPrev} 
+            style={{
+              background: 'var(--card-neutral)',
+              border: '1px solid var(--hairline)',
+              borderRadius: '50%',
+              width: '44px',
+              height: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              color: 'var(--walnut)',
+              boxShadow: 'var(--shadow-sm)'
+            }} 
+            aria-label="Previous slide"
+          >
+            <ArrowLeft size={20} />
+          </button>
+          <button 
+            type="button" 
+            onClick={scrollNext} 
+            style={{
+              background: 'var(--card-neutral)',
+              border: '1px solid var(--hairline)',
+              borderRadius: '50%',
+              width: '44px',
+              height: '44px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              color: 'var(--walnut)',
+              boxShadow: 'var(--shadow-sm)'
+            }} 
+            aria-label="Next slide"
+          >
+            <ArrowRight size={20} />
+          </button>
+        </div>
+      </div>
+
       <div className="embla" ref={emblaRef} style={{ overflow: 'hidden' }}>
         <div className="embla__container" style={{ display: 'flex', }}>
           <style dangerouslySetInnerHTML={{__html: `
@@ -151,7 +206,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
               user-select: none;
               -webkit-user-select: none;
               -webkit-user-drag: none;
-              flex: 0 0 calc(90% - 24px);
+              flex: 0 0 calc(85% - 24px);
               min-width: 0;
               margin-right: 24px;
             }
@@ -169,34 +224,30 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
               className="embla__slide" 
             >
               <div
-                className="luxury-card"
-                style={{ 
-                  height: '100%',
-                  padding: '38px', 
-                  background: 'var(--card-neutral)',
-                  marginBottom: '24px',
-                  display: 'flex',
-                  flexDirection: 'column'
-                }}
+                
+                className="luxury-card flex flex-col h-full bg-[var(--card-neutral)] mb-[24px] p-[20px] md:p-[38px]"
               >
-                <div style={{ width: '52px', height: '52px', background: 'var(--page-cream)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--clay)', marginBottom: '22px' }}>
+                <div className="w-[44px] h-[44px] md:w-[52px] md:h-[52px] bg-[var(--page-cream)] rounded-[6px] flex items-center justify-center text-[var(--clay)] mb-[22px]">
                 {service.icon}
               </div>
-              <h3 style={{ marginBottom: '12px' }}>{service.title}</h3>
-              <p style={{ marginBottom: '24px' }}>
+              <h3 className="mb-3 text-[22px] md:text-[clamp(1.75rem,3vw,2.441rem)] font-medium leading-[1.1] text-[var(--walnut)] font-[family-name:var(--font-display)]">{service.title}</h3>
+              <p className="mb-[24px] text-[15px] leading-[1.6] md:text-[14px] md:leading-[1.7] text-[var(--stone-text)] font-light">
                 {service.description}
               </p>
 
-              <div style={{ background: '#FFFFFF', padding: '18px', borderRadius: '6px', marginBottom: '28px', flexGrow: 1 }}>
-                <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--clay)', textTransform: 'uppercase', marginBottom: '8px' }}>{service.capabilitiesTitle}</div>
-                <div style={{ fontSize: '13.5px', display: 'flex', flexDirection: 'column', gap: '6px', color: 'var(--stone-text)' }}>
+              <div className="bg-transparent p-0 md:bg-[#FFFFFF] md:p-[18px] rounded-[6px] mb-[28px] flex-grow">
+                <div className="text-[11px] md:text-[12px] font-bold text-[var(--clay)] uppercase mb-[8px] tracking-[1px]">{service.capabilitiesTitle}</div>
+                <div className="text-[14px] md:text-[13.5px] flex flex-col gap-[6px] text-[var(--stone-text)]">
                   {service.capabilities.map((cap, i) => (
-                    <div key={i}>• {cap}</div>
+                    <div key={i} className="flex">
+                      <span className="hidden md:inline mr-2">•</span>
+                      <span>{cap}</span>
+                    </div>
                   ))}
                 </div>
               </div>
 
-              <button onClick={() => setSelectedService(service)} className="btn-primary" style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: 'auto' }}>
+              <button onClick={() => setSelectedService(service)} className="btn-primary w-full flex justify-center mt-auto h-[48px] md:h-auto text-[15px] items-center">
                 {service.linkText} <ArrowRight size={16} />
               </button>
               </div>
@@ -205,8 +256,8 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
         </div>
       </div>
 
-      {/* Pagination & Navigation */}
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', marginTop: '16px' }}>
+      {/* Pagination & Navigation (Tablet & Desktop) */}
+      <div className="hidden md:flex justify-center items-center gap-[20px] mt-[16px]">
         <button 
           type="button"
           onClick={scrollPrev}
@@ -229,25 +280,34 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
           <ArrowLeft size={20} />
         </button>
 
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div style={{ display: 'flex', gap: '4px' }}>
           {scrollSnaps.map((_, index) => (
             <button
               type="button"
               key={index}
               onClick={() => scrollTo(index)}
               style={{
-                width: '10px',
-                height: '10px',
-                borderRadius: '50%',
+                width: '44px',
+                height: '44px',
                 padding: 0,
                 border: 'none',
-                background: index === selectedIndex ? 'var(--clay)' : 'var(--stone-text)',
-                opacity: index === selectedIndex ? 1 : 0.4,
-                cursor: 'pointer',
-                transition: 'all 0.3s ease'
+                background: 'transparent',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer'
               }}
               aria-label={`Go to slide ${index + 1}`}
-            />
+            >
+               <div style={{
+                  width: '10px',
+                  height: '10px',
+                  borderRadius: '50%',
+                  background: index === selectedIndex ? 'var(--clay)' : 'var(--stone-text)',
+                  opacity: index === selectedIndex ? 1 : 0.4,
+                  transition: 'all 0.3s ease'
+               }} />
+            </button>
           ))}
         </div>
 

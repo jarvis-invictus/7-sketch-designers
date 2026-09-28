@@ -37,7 +37,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
     >
       {/* 1. PORTFOLIO HEADER (Always visible) */}
       <div className="relative z-10">
-        <div className="px-6 md:px-0" style={{ position: 'relative', paddingTop: '100px', paddingBottom: '40px', paddingLeft: 'max(24px, 8%)', zIndex: 20 }}>
+        <div className="px-6 md:px-0 relative pt-[100px] pb-[32px] md:pb-[40px] z-20" style={{ paddingLeft: 'max(24px, 8%)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
             <div style={{ width: '40px', height: '1px', backgroundColor: 'var(--clay)' }}></div>
             <span style={{ color: 'var(--clay)', fontWeight: '700', fontSize: '13px', letterSpacing: '2px', textTransform: 'uppercase' }}>
@@ -53,45 +53,20 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
         </div>
         
         {/* PARALLAX EFFECT (Desktop Only) */}
-        <div className="hidden md:block">
+        <div className="hidden xl:block">
           <ZoomParallax images={images} />
         </div>
       </div>
       
       {/* 2. INTERACTIVE GALLERY GRID */}
-      <div className="relative z-30 px-4 sm:px-6 md:px-8 pb-32" style={{ marginTop: '10vh' }}>
+      <div className="relative z-30 px-4 md:px-8 pb-[56px] md:pb-32 mt-0 md:mt-[10vh]">
         <div className="max-w-[1400px] mx-auto">
           
-          <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-            <h3 style={{ fontSize: '28px', color: 'var(--walnut)', marginBottom: '16px' }}>Explore the Details</h3>
-            
-            {/* Category Filters */}
-            <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '12px' }}>
-              {categories.map((cat, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveCategory(cat)}
-                  style={{
-                    padding: '8px 20px',
-                    borderRadius: 'var(--radius-pill)',
-                    border: `1px solid ${activeCategory === cat ? 'var(--clay)' : 'var(--hairline)'}`,
-                    background: activeCategory === cat ? 'var(--clay)' : 'transparent',
-                    color: activeCategory === cat ? '#FFFFFF' : 'var(--stone-text)',
-                    fontSize: '13px',
-                    fontWeight: '600',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease',
-                  }}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
+
 
           {/* Grid Layout for Projects */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '32px' }}>
-            {filteredProjects.map((project) => (
+            {projects.slice(0, 6).map((project) => (
               <div 
                 key={project.id} 
                 className="luxury-card"
@@ -105,7 +80,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
                 }}
               >
                 {/* Project Image */}
-                <div style={{ width: '100%', height: '280px', overflow: 'hidden' }}>
+                <div className="w-full aspect-[4/3] md:aspect-auto md:h-[280px] overflow-hidden">
                   <img 
                     src={project.images[0]} 
                     alt={project.title} 
@@ -116,25 +91,24 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
                 </div>
                 
                 {/* Project Content */}
-                <div style={{ padding: '32px', display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                  <div style={{ fontSize: '12px', fontWeight: '700', color: 'var(--clay)', textTransform: 'uppercase', marginBottom: '12px' }}>
+                <div className="p-[20px] md:p-[32px] flex flex-col flex-grow">
+                  <div className="text-[11px] md:text-[12px] font-[700] text-[var(--clay)] uppercase mb-[12px]">
                     {project.type || project.category}
                   </div>
                   
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', color: 'var(--walnut)', marginBottom: '16px', lineHeight: '1.3' }}>
+                  <h3 className="text-[22px] md:text-[24px] font-[family-name:var(--font-display)] text-[var(--walnut)] mb-[16px] leading-[1.3]">
                     {project.title}
                   </h3>
                   
-                  <p style={{ color: 'var(--stone-text)', fontSize: '15px', marginBottom: '32px', flexGrow: 1 }}>
+                  <p className="text-[15px] leading-[1.6] md:leading-normal text-[var(--stone-text)] mb-[32px] flex-grow">
                     {project.details || project.scope}
                   </p>
                   
                   <button 
                     onClick={() => setSelectedProject(project)} 
-                    className="btn-primary" 
-                    style={{ width: '100%', justifyContent: 'center', marginTop: 'auto' }}
+                    className="btn-primary w-full justify-center mt-auto h-[48px] md:h-auto items-center flex"
                   >
-                    Explore the Details <ArrowRight size={16} />
+                    View Project <ArrowRight size={16} />
                   </button>
                 </div>
               </div>
