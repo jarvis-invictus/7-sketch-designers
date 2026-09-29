@@ -900,7 +900,7 @@ export default function App() {
       </section>
 
             {/* Footer Section */}
-      <footer style={{ background: 'var(--accent-soft)', color: 'var(--stone-text)', padding: '80px 24px 40px 24px' }}>
+      <footer style={{ background: 'var(--accent-soft)', color: 'var(--stone-text)', padding: '80px 24px 100px 24px' }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12" style={{ marginBottom: '60px' }}>
             {/* Column 1: Brand */}
