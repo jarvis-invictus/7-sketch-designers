@@ -19,7 +19,7 @@ function PmcCard({ col, idx }) {
           <div className="flex-shrink-0 w-[32px] h-[32px] md:w-[44px] md:h-[44px] bg-[var(--page-cream)] rounded-[var(--radius-sm)] flex items-center justify-center border border-[var(--hairline)]">
             {React.cloneElement(col.icon, { className: "w-[16px] h-[16px] md:w-[20px] md:h-[20px]" })}
           </div>
-          <h3 className="text-[17px] font-semibold text-[var(--walnut)] m-0 leading-tight">{col.title}</h3>
+          <h3 className="text-[17px] font-semibold text-[var(--walnut)] m-0 leading-tight min-w-0">{col.title}</h3>
         </div>
         <ul className="list-none p-0 m-0 flex flex-col gap-[6px] md:gap-[14px]">
           {col.items.map((item, itemIdx) => (
