@@ -197,14 +197,14 @@ export default function App() {
       scope: 'Concept Design, Lighting, Spatial Planning',
       details: 'An immersive recreational hub featuring dynamic neon styling, expansive arcade zones, and a bold, high-energy aesthetic.',
       images: [
-        '/raftaar-exterior.jpg',
-        '/raftaar-aerial.jpg',
-        '/raftaar-lounge.png',
-        '/raftaar-neon.png',
-        '/raftaar-shelves.png',
-        '/raftaar-red.png',
-        '/raftaar-arcade.png',
-        '/raftaar-cafe.png'
+        '/raftaar-exterior.webp',
+        '/raftaar-aerial.webp',
+        '/raftaar-lounge.webp',
+        '/raftaar-neon.webp',
+        '/raftaar-shelves.webp',
+        '/raftaar-red.webp',
+        '/raftaar-arcade.webp',
+        '/raftaar-cafe.webp'
       ]
     },
     {
@@ -215,13 +215,13 @@ export default function App() {
       scope: 'Interior Fit-out, Common Areas, Office Kitchen, Office Spaces',
       details: 'A premium commercial fit-out featuring elegant fluted glass partitions, ergonomic open workspaces, and luxurious utility areas.',
       images: [
-        '/suratwala-hallway.jpg',
-        '/suratwala-workspace-wide.jpg',
-        '/suratwala-workspace.jpg',
-        '/suratwala-cabin-wide.jpg',
-        '/suratwala-cabin-close.jpg',
-        '/suratwala-straight-desk.jpg',
-        '/suratwala-kitchen.jpg'
+        '/suratwala-hallway.webp',
+        '/suratwala-workspace-wide.webp',
+        '/suratwala-workspace.webp',
+        '/suratwala-cabin-wide.webp',
+        '/suratwala-cabin-close.webp',
+        '/suratwala-straight-desk.webp',
+        '/suratwala-kitchen.webp'
       ]
     },
     {
@@ -232,11 +232,11 @@ export default function App() {
       scope: 'Interior Design, Space Planning, Project Management, Turnkey Execution',
       details: 'A turnkey corporate execution balancing open collaborative workstations with dedicated presentation lounges and distinctive geometric lighting.',
       images: [
-        '/pall-hero.png',
-        '/pall-workstation-wide.png',
-        '/pall-workstation-close.png',
-        '/pall-lounge.png',
-        '/pall-cafe.png'
+        '/pall-hero.webp',
+        '/pall-workstation-wide.webp',
+        '/pall-workstation-close.webp',
+        '/pall-lounge.webp',
+        '/pall-cafe.webp'
       ]
     },
     {
@@ -247,11 +247,11 @@ export default function App() {
       scope: 'Corporate Interior, Workstations, Meeting Rooms, Reception',
       details: 'A branded corporate interior featuring collaborative lounges, executive meeting rooms, and vibrant workspaces.',
       images: [
-        '/wilo-lounge-wide.png',
-        '/wilo-meeting-room.png',
-        '/wilo-executive-cabin.png',
-        '/wilo-cafeteria.png',
-        '/wilo-collage.png'
+        '/wilo-lounge-wide.webp',
+        '/wilo-meeting-room.webp',
+        '/wilo-executive-cabin.webp',
+        '/wilo-cafeteria.webp',
+        '/wilo-collage.webp'
       ]
     },
     {
@@ -262,9 +262,9 @@ export default function App() {
       scope: 'Resort Interior Design, Guest Experience Planning, Material Selection, Turnkey Execution',
       details: 'A luxurious hospitality interior combining natural wood finishes, warm ambient lighting, and elegant multi-level suites.',
       images: [
-        '/project-p17-1.jpg',
-        '/rr-exterior.png',
-        '/rr-loft-suite.png'
+        '/project-p17-1.webp',
+        '/rr-exterior.webp',
+        '/rr-loft-suite.webp'
       ]
     },
     {
@@ -275,9 +275,9 @@ export default function App() {
       scope: 'Interior Design, Space Planning, Turnkey Execution, Project Management, Furniture & Finishing',
       details: 'A premium commercial service centre highlighting bespoke furniture, modern space planning, and elegant ambient lighting.',
       images: [
-        '/tata-desk-hero.png',
-        '/tata-lounge-chair.png',
-        '/tata-executive-desk.png'
+        '/tata-desk-hero.webp',
+        '/tata-lounge-chair.webp',
+        '/tata-executive-desk.webp'
       ]
     }
   ];
@@ -287,7 +287,7 @@ export default function App() {
       num: '01', 
       stage: 'Architectural Briefing & Spatial Planning', 
       tag: 'Phase 1 • Feasibility', 
-      image: '/project-p25-1.png',
+      image: '/project-p25-1.webp',
       description: 'We laser-scan the site, map the existing structure, work out the permitted built-up area (FSI) and agree the layout and flow of every space with you.',
       deliverable: 'CAD Site Layout & Initial Spatial Blueprint'
     },
@@ -295,7 +295,7 @@ export default function App() {
       num: '02', 
       stage: '3D Photorealistic Visualization & Moodboard', 
       tag: 'Phase 2 • Design', 
-      image: '/project-p14-3.png',
+      image: '/project-p14-3.webp',
       description: 'We create detailed 3D models of your space, study natural light, and select finishes such as acoustic wall panels and walnut and linen material palettes.',
       deliverable: '3D Photorealistic Render Suite & VR Walkthrough'
     },
@@ -303,7 +303,7 @@ export default function App() {
       num: '03', 
       stage: 'BOQ Costing & Contractor Tendering', 
       tag: 'Phase 3 • Governance', 
-      image: '/project-p20-1.jpg',
+      image: '/project-p20-1.webp',
       description: 'We prepare an itemised Bill of Quantities (BOQ) with Grade-A material limits and invite competitive contractor bids, so the cost is fixed before work starts and unapproved extras are avoided.',
       deliverable: 'Fixed Cost BOQ & Tender Contracts'
     },
@@ -311,7 +311,7 @@ export default function App() {
       num: '04', 
       stage: 'In-House German CNC Production', 
       tag: 'Phase 4 • Manufacturing', 
-      image: '/project-p11-3.jpg',
+      image: '/project-p11-3.webp',
       description: 'Modular desks, executive suites and storage units are made off-site at our own German CNC factory, for 50% faster completion.',
       deliverable: '10-Year Factory Warranted Furniture Set'
     },
@@ -319,7 +319,7 @@ export default function App() {
       num: '05', 
       stage: 'On-Site PMC Audits & Handover', 
       tag: 'Phase 5 • Execution', 
-      image: '/project-p17-1.jpg',
+      image: '/project-p17-1.webp',
       description: 'Our engineers supervise the site every day, covering masonry, concealed electrical work and HVAC alignment, run snag-list checks, and hand over the keys defect-free.',
       deliverable: 'Turnkey Handover & As-Built Layouts'
     }
@@ -383,7 +383,7 @@ export default function App() {
           onClick={navigateToHome} 
           style={{ cursor: 'pointer', flexShrink: 0, padding: '4px 0', display: 'flex', alignItems: 'center', gap: '12px' }}
         >
-          <img src="/pure-icon-logo.png" alt="7 Sketch Designers" style={{ height: '45px', objectFit: 'contain' }} />
+          <img src="/pure-icon-logo.webp" alt="7 Sketch Designers" style={{ height: '45px', objectFit: 'contain' }} />
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: '600', color: 'var(--walnut)', lineHeight: '1.2' }}>Sketch Designer's</span>
             <span className="text-[7px] tracking-normal md:text-[10px] md:tracking-[0.15em] text-[var(--stone-text)] mt-[2px] uppercase">Architecture, Interior & Landscape Consultant</span>
@@ -797,12 +797,12 @@ export default function App() {
               <div style={{ position: 'relative', width: '100%', minHeight: '520px', display: 'flex', alignItems: 'center' }}>
                 {/* Main Wide Image (The Anchor) */}
                 <div style={{ position: 'absolute', top: 0, right: 0, width: '92%', height: '480px', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.08)', zIndex: 1 }}>
-                  <img src="/cnc-factory-wide.jpg" alt="7 Sketch Designers CNC Factory Floor" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src="/cnc-factory-wide.webp" alt="7 Sketch Designers CNC Factory Floor" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
                 
                 {/* Overlapping Macro Image (The Floating Accent) */}
                 <div style={{ position: 'absolute', bottom: '10px', left: 0, width: '42%', height: '240px', borderRadius: '8px', overflow: 'hidden', border: '6px solid #FFFFFF', background: '#FFFFFF', zIndex: 2, boxShadow: '0 30px 60px rgba(62, 47, 35, 0.15)' }}>
-                  <img src="/cnc-factory-macro.jpg" alt="Precision CNC Edge Banding Machinery" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }} />
+                  <img src="/cnc-factory-macro.webp" alt="Precision CNC Edge Banding Machinery" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }} />
                 </div>
               </div>
             </div>
@@ -905,7 +905,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12" style={{ marginBottom: '60px' }}>
             {/* Column 1: Brand */}
             <div>
-              <img src="/main-logo.png" alt="7 Sketch Designers" style={{ height: '60px', objectFit: 'contain', marginBottom: '20px' }} />
+              <img src="/main-logo.webp" alt="7 Sketch Designers" style={{ height: '60px', objectFit: 'contain', marginBottom: '20px' }} />
               <p style={{ color: 'var(--stone-text)', fontSize: '14.5px', lineHeight: '1.6', marginBottom: '24px' }}>
                 Designing Spaces. Delivering Excellence.
               </p>

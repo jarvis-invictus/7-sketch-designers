@@ -10,7 +10,7 @@ export default function AboutSection() {
         <div className="flex flex-col lg:hidden gap-6 mb-8">
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
-              <img src="/pure-icon-logo.png" alt="7 Sketch Designers" style={{ height: '40px', objectFit: 'contain' }} />
+              <img src="/pure-icon-logo.webp" alt="7 Sketch Designers" style={{ height: '40px', objectFit: 'contain' }} />
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <span style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: '600', color: 'var(--walnut)', lineHeight: '1.2' }}>Sketch Designer's</span>
                 <span className="text-[7.5px] uppercase tracking-[0.05em] text-[var(--stone-text)] mt-[2px]">Architecture, Interior & Landscape</span>
@@ -20,7 +20,7 @@ export default function AboutSection() {
           </div>
 
           <div className="w-full aspect-square overflow-hidden rounded-xl border border-[var(--hairline)]">
-            <img src="/studio-storefront.jpg" className="w-full h-full object-cover" alt="Studio" />
+            <img src="/studio-storefront.webp" className="w-full h-full object-cover" alt="Studio" />
           </div>
 
           <p className="text-[15px] text-[var(--stone-text)] leading-[1.6]">
@@ -49,7 +49,7 @@ export default function AboutSection() {
           {/* Left: Studio Image */}
           <div className="luxury-card" style={{ padding: '12px', background: '#FFFFFF' }}>
             <img 
-              src="/studio-storefront.jpg" 
+              src="/studio-storefront.webp" 
               alt="7 Sketch Designers Studio Storefront" 
               style={{ width: '100%', height: '640px', objectFit: 'cover', borderRadius: 'var(--radius-lg)' }} 
             />
@@ -59,7 +59,7 @@ export default function AboutSection() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-                <img src="/pure-icon-logo.png" alt="7 Sketch Designers" style={{ height: '50px', objectFit: 'contain' }} />
+                <img src="/pure-icon-logo.webp" alt="7 Sketch Designers" style={{ height: '50px', objectFit: 'contain' }} />
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <span style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: '600', color: 'var(--walnut)', lineHeight: '1.2' }}>Sketch Designer's</span>
                   <span style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.15em', color: 'var(--stone-text)', marginTop: '2px' }}>Architecture, Interior & Landscape Consultant</span>

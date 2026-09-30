@@ -52,7 +52,7 @@ export default function WhyChooseUs() {
             whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
           >
             <img 
-              src="/project-p20-1.jpg" 
+              src="/project-p20-1.webp" 
               alt="7 Sketch Designers Studio" 
               style={{ width: '100%', height: '500px', objectFit: 'cover', borderRadius: 'var(--radius-lg)' }} 
             />

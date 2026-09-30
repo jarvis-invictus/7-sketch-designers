@@ -385,7 +385,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
             {/* Hero Image */}
             <div style={{ width: '100%', height: '40vh', minHeight: '300px', position: 'relative' }}>
               <img 
-                src={selectedService.heroImageUrl || projects.find(p => p.id === selectedService.heroProjectId)?.images[0] || '/project-p25-1.png'} 
+                src={selectedService.heroImageUrl || projects.find(p => p.id === selectedService.heroProjectId)?.images[0] || '/project-p25-1.webp'} 
                 alt={selectedService.title} 
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />

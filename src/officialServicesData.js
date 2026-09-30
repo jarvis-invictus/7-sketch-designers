@@ -5,7 +5,7 @@ export const officialServicesData = [
     title: 'Architectural Consultancy',
     badge: 'Core Architectural Practice',
     heroSubtitle: 'Comprehensive Spatial Master Planning, Concept Engineering & Sanction Documentation',
-    heroImage: '/project-p13-2.jpg',
+    heroImage: '/project-p13-2.webp',
     description: 'Our Architectural Consultancy service translates vision into structural reality. We deliver rigorous spatial planning, creative concept development, and execution-ready drawings tailored for corporate offices, commercial centers, hotels, hospitals, educational campuses, and industrial sites.',
     subServices: [
       { name: 'Planning', desc: 'Site zoning, structural footprint optimization, spatial flow analysis, and master layout planning.' },
@@ -27,7 +27,7 @@ export const officialServicesData = [
     title: 'Project Management Consultancy (PMC)',
     badge: '12+ Years Governance Standard',
     heroSubtitle: 'Complete Oversight Over Planning, Budget, Execution, Monitoring & Quality Control',
-    heroImage: '/project-p14-2.png',
+    heroImage: '/project-p14-2.webp',
     description: 'Project Management Consultancy (PMC) is a professional service that ensures a project is executed efficiently, within budget, on schedule, and according to the highest quality standards. Our PMC services provide complete control over planning, coordination, execution, monitoring, and successful project completion.',
     pmcCorePillars: [
       { title: 'Planning', desc: 'Baseline scheduling, work breakdown structures, and resource allocation.' },
@@ -57,7 +57,7 @@ export const officialServicesData = [
     title: 'Turnkey Interior Execution',
     badge: 'In-House German Modular Factory',
     heroSubtitle: 'Single-Point Accountability for Civil, Electrical, Furniture, Flooring, Painting & MEP',
-    heroImage: '/project-p17-1.jpg',
+    heroImage: '/project-p17-1.webp',
     description: 'Turnkey Interior Execution delivers complete peace of mind. We take 100% single-source responsibility for transforming architectural concepts into fully operational commercial and residential spaces with zero contractor conflicts.',
     turnkeyComponents: [
       { name: 'Civil', desc: 'Drywall partitioning, masonry, false ceilings, waterproofing, and structural modifications.' },

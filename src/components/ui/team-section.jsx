@@ -2,14 +2,14 @@ import React from 'react';
 
 export default function TeamSection() {
   const founders = [
-    { name: 'Rohit Wankhede', role: 'Founder & Principal Architect', image: '/team-rohit.jpg' },
+    { name: 'Rohit Wankhede', role: 'Founder & Principal Architect', image: '/team-rohit.webp' },
     { name: 'Anita Wankhede', role: 'Founder, VK Infra Solutions / Accounts & Purchase' }
   ];
 
   const team = [
-    { name: 'Deepa Vinayan', role: 'Senior Designer', image: '/team-deepa.jpg' },
-    { name: 'Komal Narkar', role: 'Senior Designer', image: '/team-komal.jpg' },
-    { name: 'Hemangee Suryawanshi', role: 'Junior Designer', image: '/team-hemangee.jpg' }
+    { name: 'Deepa Vinayan', role: 'Senior Designer', image: '/team-deepa.webp' },
+    { name: 'Komal Narkar', role: 'Senior Designer', image: '/team-komal.webp' },
+    { name: 'Hemangee Suryawanshi', role: 'Junior Designer', image: '/team-hemangee.webp' }
   ];
 
   return (

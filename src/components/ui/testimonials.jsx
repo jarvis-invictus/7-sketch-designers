@@ -12,7 +12,7 @@ export default function Testimonials() {
       role: "R R Heritage",
       rating: 5,
       avatar: "M",
-      image: "/rr-exterior.png"
+      image: "/rr-exterior.webp"
     },
     { 
       id: 2,
@@ -21,7 +21,7 @@ export default function Testimonials() {
       role: "Wilo Sales Office",
       rating: 5,
       avatar: "D",
-      image: "/wilo-lounge-wide.png"
+      image: "/wilo-lounge-wide.webp"
     },
     { 
       id: 3,
@@ -30,7 +30,7 @@ export default function Testimonials() {
       role: "Tata Service Centre",
       rating: 5,
       avatar: "P",
-      image: "/tata-desk-hero.png"
+      image: "/tata-desk-hero.webp"
     },
     { 
       id: 4,
@@ -39,7 +39,7 @@ export default function Testimonials() {
       role: "Go Karting Recreational Hub",
       rating: 5,
       avatar: "O",
-      image: "/raftaar-arcade.png"
+      image: "/raftaar-arcade.webp"
     },
     { 
       id: 5,
@@ -48,7 +48,7 @@ export default function Testimonials() {
       role: "Suratwala Mark Plazzo",
       rating: 5,
       avatar: "M",
-      image: "/suratwala-workspace-wide.jpg"
+      image: "/suratwala-workspace-wide.webp"
     }
   ];
 
