@@ -48,26 +48,26 @@ function ProcessBlueprintCard({ item, idx }) {
       whileHover={{ y: -4, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
     >
       {/* MOBILE BLOCK */}
-      <div className="flex flex-col lg:hidden gap-6">
+      <div className="flex flex-col lg:hidden">
         <div>
           <div className="flex items-center gap-3 mb-3">
             <span className="text-[24px] font-extrabold text-[var(--brand-gold)] leading-none">{item.num}</span>
-            <span className="brand-badge">{item.tag}</span>
+            <span className="text-[11px] font-bold text-[var(--clay)] uppercase tracking-wider leading-tight">{item.tag}</span>
           </div>
-          <h3 className="text-[22px] mb-3 leading-tight">{item.stage}</h3>
-          <p className="text-[15px] leading-relaxed mb-4">{item.description}</p>
+          <h3 className="text-[20px] mb-3 leading-tight text-[var(--walnut)]">{item.stage}</h3>
+          <p className="text-[15px] leading-[1.6] mb-0 text-[var(--stone-text)]">{item.description}</p>
           
-          <div className="bg-white p-4 rounded-lg border-t-[3px] border-[var(--brand-gold)] shadow-sm">
-            <div className="text-[10px] font-extrabold text-[var(--brand-gold)] uppercase tracking-wider mb-1">
-              Verified Deliverable
+          <div className="mt-[12px] pt-[12px] border-t border-[var(--hairline)]">
+            <div className="text-[11px] font-extrabold text-[var(--brand-gold)] uppercase tracking-wider mb-1">
+              Verified Stage Deliverable
             </div>
-            <div className="text-[14px] font-bold text-[var(--walnut)]">
+            <div className="text-[15px] font-semibold text-[var(--walnut)]">
               {item.deliverable}
             </div>
           </div>
         </div>
 
-        <div className="relative w-full max-h-[120px] overflow-hidden rounded-lg flex items-center justify-center mask-image-[linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+        <div className="mt-[16px] relative w-full max-h-[120px] overflow-hidden flex items-center justify-center mask-image-[linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
           <div className="transform scale-75 origin-top">
             {(() => {
               const Illustration = ProcessIllustrations[idx];
@@ -288,7 +288,7 @@ export default function App() {
       stage: 'Architectural Briefing & Spatial Planning', 
       tag: 'Phase 1 • Feasibility', 
       image: '/project-p25-1.png',
-      description: 'Laser-scanning site dimensions, structural footprint mapping, FSI calculations, and establishing exact spatial flow briefs with clients.',
+      description: 'We laser-scan the site, map the existing structure, work out the permitted built-up area (FSI) and agree the layout and flow of every space with you.',
       deliverable: 'CAD Site Layout & Initial Spatial Blueprint'
     },
     { 
@@ -296,7 +296,7 @@ export default function App() {
       stage: '3D Photorealistic Visualization & Moodboard', 
       tag: 'Phase 2 • Design', 
       image: '/project-p14-3.png',
-      description: 'Developing high-resolution 3D volumetric models, natural light simulation, acoustic wall panelling choices, and curated walnut/linen material palettes.',
+      description: 'We create detailed 3D models of your space, study natural light, and select finishes such as acoustic wall panels and walnut and linen material palettes.',
       deliverable: '3D Photorealistic Render Suite & VR Walkthrough'
     },
     { 
@@ -304,7 +304,7 @@ export default function App() {
       stage: 'BOQ Costing & Contractor Tendering', 
       tag: 'Phase 3 • Governance', 
       image: '/project-p20-1.jpg',
-      description: 'Drafting line-by-line Bill of Quantities (BOQ) with Grade-A material caps and competitive vendor bidding to eliminate unapproved variation orders.',
+      description: 'We prepare an itemised Bill of Quantities (BOQ) with Grade-A material limits and invite competitive contractor bids, so the cost is fixed before work starts and unapproved extras are avoided.',
       deliverable: 'Fixed Cost BOQ & Tender Contracts'
     },
     { 
@@ -312,7 +312,7 @@ export default function App() {
       stage: 'In-House German CNC Production', 
       tag: 'Phase 4 • Manufacturing', 
       image: '/project-p11-3.jpg',
-      description: 'Off-site fabrication of modular desks, executive suites, and storage units at our in-house German CNC factory plant (50% faster completion).',
+      description: 'Modular desks, executive suites and storage units are made off-site at our own German CNC factory, for 50% faster completion.',
       deliverable: '10-Year Factory Warranted Furniture Set'
     },
     { 
@@ -320,7 +320,7 @@ export default function App() {
       stage: 'On-Site PMC Audits & Handover', 
       tag: 'Phase 5 • Execution', 
       image: '/project-p17-1.jpg',
-      description: 'Daily engineering supervision over civil masonry, concealed electrical ducting, HVAC alignment, snag-list audits, and defect-free key handover.',
+      description: 'Our engineers supervise the site every day, covering masonry, concealed electrical work and HVAC alignment, run snag-list checks, and hand over the keys defect-free.',
       deliverable: 'Turnkey Handover & As-Built Layouts'
     }
   ];
@@ -740,15 +740,15 @@ export default function App() {
           <section id="process" className="section-wrapper" style={{ background: 'var(--page-cream)', borderTop: '1px solid var(--hairline)' }}>
             <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
               <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 32px auto' }}>
-                <span className="brand-badge">Creative Architecture Journey</span>
-                <h2 style={{ marginTop: '10px' }}>Interactive Execution Blueprint</h2>
+                <span className="brand-badge">How We Work</span>
+                <h2 style={{ marginTop: '10px' }}>Our Execution Blueprint</h2>
                 <p style={{ marginTop: '10px' }}>
                   Explore how 7 Sketch Designers transforms conceptual briefs into living architectural spaces.
                 </p>
               </div>
 
               {/* Sequential Process Reveal */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <div className="flex flex-col gap-[16px] md:gap-[24px]">
                 {creativeExecutionProcess.map((item, idx) => (
                   <ProcessBlueprintCard key={idx} item={item} idx={idx} />
                 ))}
@@ -900,7 +900,7 @@ export default function App() {
       </section>
 
             {/* Footer Section */}
-      <footer style={{ background: 'var(--accent-soft)', color: 'var(--stone-text)', padding: '80px 24px 100px 24px' }}>
+      <footer className="pb-[calc(88px+env(safe-area-inset-bottom))] md:pb-[100px] pt-[80px] px-[24px]" style={{ background: 'var(--accent-soft)', color: 'var(--stone-text)' }}>
         <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12" style={{ marginBottom: '60px' }}>
             {/* Column 1: Brand */}
@@ -918,26 +918,29 @@ export default function App() {
               </a>
             </div>
 
-            {/* Column 2: Quick Links */}
-            <div>
-              <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '24px', fontFamily: 'var(--font-display)', fontWeight: '600' }}>Quick Links</h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14.5px' }}>
-                <a href="#services" onClick={() => setCurrentView('home')} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Services</a>
-                <a href="#portfolio" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Projects</a>
-                <a href="#process" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('process')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Process</a>
-                <a href="#about" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>About</a>
-                <a href="#contact" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 100); }} style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Contact</a>
+            {/* Columns 2 & 3: Grouped for mobile side-by-side */}
+            <div className="grid grid-cols-2 gap-[28px] md:contents">
+              {/* Column 2: Quick Links */}
+              <div>
+                <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '24px', fontFamily: 'var(--font-display)', fontWeight: '600' }}>Quick Links</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                  <a href="#services" onClick={() => setCurrentView('home')} className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Services</a>
+                  <a href="#portfolio" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Projects</a>
+                  <a href="#process" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('process')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Process</a>
+                  <a href="#about" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50); }} className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>About</a>
+                  <a href="#contact" onClick={(e) => { e.preventDefault(); setCurrentView('home'); setTimeout(() => document.getElementById('contact')?.scrollIntoView({ behavior: 'instant', block: 'start' }), 100); }} className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Contact</a>
+                </div>
               </div>
-            </div>
 
-            {/* Column 3: Our Services */}
-            <div>
-              <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '24px', fontFamily: 'var(--font-display)', fontWeight: '600' }}>Our Services</h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '14.5px' }}>
-                <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Architectural Consultancy</a>
-                <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Project Management Consultancy</a>
-                <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Turnkey Interior Execution</a>
-                <a href="#services" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Interior Design</a>
+              {/* Column 3: Our Services */}
+              <div>
+                <h4 style={{ fontSize: '16px', color: 'var(--walnut)', marginBottom: '24px', fontFamily: 'var(--font-display)', fontWeight: '600' }}>Our Services</h4>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
+                  <a href="#services" className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Architectural Consultancy</a>
+                  <a href="#services" className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Project Management Consultancy</a>
+                  <a href="#services" className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Turnkey Interior Execution</a>
+                  <a href="#services" className="flex items-center min-h-[40px] text-[14px] md:text-[14.5px]" style={{ color: 'var(--stone-text)', textDecoration: 'none' }}>Interior Design</a>
+                </div>
               </div>
             </div>
 
@@ -975,27 +978,14 @@ export default function App() {
         href="https://wa.me/917517277477?text=Hi%207%20Sketch%20Designers,%20I%20would%20like%20to%20inquire%20about%20architectural/interior%20services."
         target="_blank"
         rel="noreferrer"
+        className="fixed z-[99] bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_12px_28px_rgba(37,211,102,0.45)] no-underline w-[48px] h-[48px] right-[16px] bottom-[calc(16px+env(safe-area-inset-bottom))] md:w-[56px] md:h-[56px] md:right-[26px] md:bottom-[26px]"
         style={{
-          position: 'fixed',
-          bottom: '26px',
-          right: '26px',
-          zIndex: 99,
-          background: '#25D366',
-          color: '#FFFFFF',
-          width: '56px',
-          height: '56px',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 12px 28px rgba(37, 211, 102, 0.45)',
-          textDecoration: 'none',
           opacity: currentView === 'home' ? fabOpacity : 1,
           pointerEvents: (currentView === 'home' && !isScrolled) ? 'none' : 'auto',
           scale: currentView === 'home' ? fabScale : 1
         }}
       >
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+        <svg viewBox="0 0 24 24" className="w-[26px] h-[26px] md:w-[28px] md:h-[28px]" fill="currentColor">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
         </svg>
       </motion.a>

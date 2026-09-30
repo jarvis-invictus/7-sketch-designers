@@ -161,8 +161,8 @@ export function InfiniteMovingCards<
                   cardClassName,
                 )}
                 style={{
-                  minWidth: "min(22rem, calc(100vw - 4rem))",
-                  maxWidth: 420,
+                  minWidth: "min(22rem, 90vw)",
+                  maxWidth: "min(420px, 90vw)",
                   borderColor: 'var(--hairline)',
                   background: 'var(--card-neutral)',
                   padding: '36px 32px',
