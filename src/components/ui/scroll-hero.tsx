@@ -14,43 +14,73 @@ const ScrollHero = () => {
 
   useEffect(() => {
     const frameCount = 192;
-    const currentFrame = (index: number) => `/hero-frames/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+    const usePortrait = window.matchMedia('(max-width: 768px) and (orientation: portrait)').matches;
 
-    // Simple batch loading to avoid huge simultaneous network requests
-    const batchSize = 15;
-    
-    const loadBatch = (startIndex: number) => {
-      if (startIndex > frameCount) return;
-      const endIndex = Math.min(startIndex + batchSize - 1, frameCount);
-      let loadedCount = 0;
-      const totalToLoad = endIndex - startIndex + 1;
-      
-      const onImageLoadOrError = () => {
-        loadedCount++;
-        if (loadedCount === totalToLoad) {
-          loadBatch(endIndex + 1);
+    function runDesktopLoader() {
+      const currentFrame = (index: number) => `/hero-frames/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
+      const batchSize = 15;
+      const loadBatch = (startIndex: number) => {
+        if (startIndex > frameCount) return;
+        const endIndex = Math.min(startIndex + batchSize - 1, frameCount);
+        let loadedCount = 0;
+        const totalToLoad = endIndex - startIndex + 1;
+        const onImageLoadOrError = () => {
+          loadedCount++;
+          if (loadedCount === totalToLoad) loadBatch(endIndex + 1);
+        };
+        for (let i = startIndex; i <= endIndex; i++) {
+          const img = new Image();
+          img.src = currentFrame(i);
+          img.onload = () => { imagesRef.current[i] = img; onImageLoadOrError(); };
+          img.onerror = onImageLoadOrError;
         }
       };
+      const firstImg = new Image();
+      firstImg.src = currentFrame(1);
+      firstImg.onload = () => {
+        imagesRef.current[1] = firstImg;
+        setFirstFrameLoaded(true);
+        loadBatch(2);
+      };
+    }
 
-      for (let i = startIndex; i <= endIndex; i++) {
-        const img = new Image();
-        img.src = currentFrame(i);
-        img.onload = () => {
-          imagesRef.current[i] = img;
-          onImageLoadOrError();
+    if (usePortrait) {
+      const currentFrame = (index: number) => `/hero-frames-mobile/mob-frame-${index.toString().padStart(3, '0')}.jpg`;
+      const firstImg = new Image();
+      firstImg.decoding = 'async';
+      firstImg.src = currentFrame(1);
+      
+      const loadPortraitFrames = () => {
+        const order: number[] = [];
+        for (let i = 5; i <= 189; i += 4) order.push(i);
+        order.push(192);
+        for (let i = 2; i < 192; i++) {
+          if ((i - 1) % 4 !== 0) order.push(i);
+        }
+        let head = 0;
+        let active = 0;
+        const next = () => {
+          if (head >= order.length) return;
+          const idx = order[head++];
+          active++;
+          const img = new Image();
+          img.decoding = 'async';
+          img.src = currentFrame(idx);
+          img.onload = () => { imagesRef.current[idx] = img; active--; next(); };
+          img.onerror = () => { active--; next(); };
         };
-        img.onerror = onImageLoadOrError;
-      }
-    };
+        for (let i = 0; i < 6; i++) next();
+      };
 
-    // Load first frame immediately
-    const firstImg = new Image();
-    firstImg.src = currentFrame(1);
-    firstImg.onload = () => {
-      imagesRef.current[1] = firstImg;
-      setFirstFrameLoaded(true);
-      loadBatch(2); // Start background loading
-    };
+      firstImg.onload = () => {
+        imagesRef.current[1] = firstImg;
+        setFirstFrameLoaded(true);
+        loadPortraitFrames();
+      };
+      firstImg.onerror = runDesktopLoader;
+    } else {
+      runDesktopLoader();
+    }
   }, []);
 
   const renderFrame = (index: number) => {
@@ -72,6 +102,35 @@ const ScrollHero = () => {
     
     const img = imagesRef.current[targetIndex];
     if (!img) return;
+
+    if (img.height > img.width) {
+      const cssW = canvas.clientWidth;
+      const cssH = canvas.clientHeight;
+      if (cssW === 0 || cssH === 0) return;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const targetW = Math.round(cssW * dpr);
+      const targetH = Math.round(cssH * dpr);
+      if (canvas.width !== targetW || canvas.height !== targetH) {
+        canvas.width = targetW;
+        canvas.height = targetH;
+      }
+      context.setTransform(1, 0, 0, 1, 0, 0);
+      const ratio = Math.max(canvas.width / img.width, canvas.height / img.height);
+      const drawW = img.width * ratio;
+      const drawH = img.height * ratio;
+      const dx = (canvas.width - drawW) / 2;
+      const dy = (canvas.height - drawH) / 2;
+      context.drawImage(img, dx, dy, drawW, drawH);
+      
+      const offsets = [2, 4, -2, -4];
+      for (const off of offsets) {
+        const nextImg = imagesRef.current[targetIndex + off];
+        if (nextImg && nextImg.decode) {
+          nextImg.decode().catch(() => {});
+        }
+      }
+      return;
+    }
 
     let pixelRatio = window.devicePixelRatio || 1;
     let canvasWidth = window.innerWidth * pixelRatio;
