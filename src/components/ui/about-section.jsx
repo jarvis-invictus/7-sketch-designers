@@ -19,8 +19,8 @@ export default function AboutSection() {
             <h2 className="text-[28px] text-[var(--walnut)]">About Our Studio</h2>
           </div>
 
-          <div className="w-full aspect-square overflow-hidden rounded-xl border border-[var(--hairline)]">
-            <img src="/studio-storefront.webp" className="w-full h-full object-cover" alt="Studio" />
+          <div className="w-full rounded-xl border border-[var(--hairline)] block">
+            <img src="/studio-storefront.jpg" className="w-full h-auto block rounded-xl" alt="Studio" />
           </div>
 
           <p className="text-[15px] text-[var(--stone-text)] leading-[1.6]">
@@ -49,9 +49,9 @@ export default function AboutSection() {
           {/* Left: Studio Image */}
           <div className="luxury-card" style={{ padding: '12px', background: '#FFFFFF' }}>
             <img 
-              src="/studio-storefront.webp" 
+              src="/studio-storefront.jpg" 
               alt="7 Sketch Designers Studio Storefront" 
-              style={{ width: '100%', height: '640px', objectFit: 'cover', borderRadius: 'var(--radius-lg)' }} 
+              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 'var(--radius-lg)' }} 
             />
           </div>
 
