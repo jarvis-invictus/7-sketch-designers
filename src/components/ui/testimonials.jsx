@@ -40,15 +40,6 @@ export default function Testimonials() {
       rating: 5,
       avatar: "O",
       image: "/raftaar-arcade.webp"
-    },
-    { 
-      id: 5,
-      description: "A highly professional team. The architectural design and space planning for our commercial building was executed with incredible precision.", 
-      name: "Management", 
-      role: "Suratwala Mark Plazzo",
-      rating: 5,
-      avatar: "M",
-      image: "/suratwala-workspace-wide.webp"
     }
   ];
 
