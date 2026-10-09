@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useReliableInView } from './hooks/useReliableInView';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import ScrollHero from './components/ui/scroll-hero';
@@ -110,11 +110,13 @@ function ProcessBlueprintCard({ item, idx }) {
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
-  const headerOpacity = useTransform(scrollY, [0, 150], [0, 1]);
-  const headerY = useTransform(scrollY, [0, 150], ["-100%", "0%"]);
   const fabOpacity = useTransform(scrollY, [0, 150], [0, 1]);
   const fabScale = useTransform(scrollY, [0, 150], [0.8, 1]);
   const [isScrolledPastHero, setIsScrolledPastHero] = useState(false);
+  // The navigation bar stays hidden while the hero is on screen and appears only once
+  // the hero has fully scrolled away (the bottom of the hero wrapper has passed the top of the screen).
+  const heroWrapRef = useRef(null);
+  const [heroPassed, setHeroPassed] = useState(false);
   const [showHeroLandingLogo, setShowHeroLandingLogo] = useState(true);
   const [currentView, setCurrentView] = useState('home'); // 'home' | 'service-detail' | 'project-detail'
   const [selectedServiceId, setSelectedServiceId] = useState('architectural-consultancy');
@@ -134,11 +136,23 @@ export default function App() {
       const heroScrollDistance = window.innerHeight * 3.5;
       setIsScrolledPastHero(window.scrollY > heroScrollDistance);
       setShowHeroLandingLogo(window.scrollY < 24);
+      const heroEl = heroWrapRef.current;
+      setHeroPassed(heroEl ? heroEl.getBoundingClientRect().bottom <= 0 : true);
     };
     window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentView]);
+
+  const headerVisible = currentView !== 'home' || heroPassed;
+
+  // If the bar hides again (user scrolled back up into the hero), close any open menu.
+  useEffect(() => {
+    if (!headerVisible) {
+      setIsMobileMenuOpen(false);
+      setIsServicesDropdownOpen(false);
+    }
+  }, [headerVisible]);
   
   // Project Gallery Modal State
   const [activeProjectModal, setActiveProjectModal] = useState(null);
@@ -358,7 +372,14 @@ export default function App() {
       </div>
 
       {/* Glassmorphism Header */}
-      <motion.header className="glass-header" style={{
+      <motion.header
+        className="glass-header"
+        initial={false}
+        animate={headerVisible
+          ? { opacity: 1, y: '0%', visibility: 'visible' }
+          : { opacity: 0, y: '-100%', transitionEnd: { visibility: 'hidden' } }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        style={{
         position: 'fixed',
         top: 0,
         left: 0,
@@ -369,9 +390,7 @@ export default function App() {
         justifyContent: 'space-between',
         alignItems: 'center',
         gap: '20px',
-        opacity: currentView === 'home' ? headerOpacity : 1,
-        pointerEvents: (currentView === 'home' && !isScrolled) ? 'none' : 'auto',
-        y: currentView === 'home' ? headerY : '0%',
+        pointerEvents: headerVisible ? 'auto' : 'none',
         background: 'rgba(250, 246, 240, 0.95)',
         backdropFilter: 'blur(12px)',
         borderBottom: '1px solid var(--hairline)',
@@ -693,7 +712,9 @@ export default function App() {
         /* HOME PAGE VIEW */
         <div>
           {/* SCROLL-BASED GHOST BUILD HERO */}
-          <ScrollHero />
+          <div ref={heroWrapRef}>
+            <ScrollHero />
+          </div>
 
           {currentView === 'home' && (
             <div
