@@ -228,7 +228,7 @@ export default function App() {
       type: 'Retail Boutique',
       details: 'A rental boutique for clothes and jewellery, designed with arched display niches, softly lit jewellery shelves and warm gold accents.',
       images: [
-        '/majestic-01.jpg',
+        '/majestic-01.webp',
         '/majestic-02.jpg',
         '/majestic-03.jpg',
         '/majestic-04.jpg',
@@ -733,7 +733,7 @@ export default function App() {
               }}
             >
               <img
-                src="/hero-landing-logo.png"
+                src="/hero-landing-logo.webp"
                 alt="7 Sketch Designers"
                 style={{ width: 'min(68vw, 620px)', height: 'auto', objectFit: 'contain' }}
               />

@@ -20,7 +20,7 @@ export default function AboutSection() {
           </div>
 
           <div className="w-full rounded-xl border border-[var(--hairline)] block">
-            <img src="/studio-storefront.jpg" className="w-full h-auto block rounded-xl" alt="Studio" />
+            <img src="/studio-storefront-full.webp" className="w-full h-auto block rounded-xl" alt="Studio" />
           </div>
 
           <p className="text-[15px] text-[var(--stone-text)] leading-[1.6]">
@@ -49,7 +49,7 @@ export default function AboutSection() {
           {/* Left: Studio Image */}
           <div className="luxury-card" style={{ padding: '12px', background: '#FFFFFF' }}>
             <img 
-              src="/studio-storefront.jpg" 
+              src="/studio-storefront-full.webp" 
               alt="7 Sketch Designers Studio Storefront" 
               style={{ width: '100%', height: 'auto', display: 'block', borderRadius: 'var(--radius-lg)' }} 
             />
