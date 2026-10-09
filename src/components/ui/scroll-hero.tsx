@@ -12,75 +12,98 @@ const ScrollHero = () => {
   const mobileBgCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [firstFrameLoaded, setFirstFrameLoaded] = useState(false);
 
-  useEffect(() => {
-    const frameCount = 192;
-    const usePortrait = window.matchMedia('(max-width: 768px) and (orientation: portrait)').matches;
+  // Which frame the scroll position is asking for, which frame is actually on
+  // the canvas, and the latest renderFrame. Used to redraw when a better frame arrives.
+  const targetFrameRef = useRef(1);
+  const drawnFrameRef = useRef(0);
+  const renderFrameRef = useRef<(index: number) => void>(() => {});
 
-    function runDesktopLoader() {
-      const currentFrame = (index: number) => `/hero-frames/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
-      const batchSize = 15;
-      const loadBatch = (startIndex: number) => {
-        if (startIndex > frameCount) return;
-        const endIndex = Math.min(startIndex + batchSize - 1, frameCount);
-        let loadedCount = 0;
-        const totalToLoad = endIndex - startIndex + 1;
-        const onImageLoadOrError = () => {
-          loadedCount++;
-          if (loadedCount === totalToLoad) loadBatch(endIndex + 1);
-        };
-        for (let i = startIndex; i <= endIndex; i++) {
-          const img = new Image();
-          img.src = currentFrame(i);
-          img.onload = () => { imagesRef.current[i] = img; onImageLoadOrError(); };
-          img.onerror = onImageLoadOrError;
+  useEffect(() => {
+    const usePortrait = window.matchMedia('(max-width: 768px) and (orientation: portrait)').matches;
+    let cancelled = false;
+
+    const pad = (n: number) => n.toString().padStart(3, '0');
+    const desktopFrameUrl = (n: number) => `/hero-frames/ezgif-frame-${pad(n)}.jpg`;
+    const portraitFrameUrl = (n: number) => `/hero-frames-mobile/mob-frame-${pad(n)}.jpg`;
+
+    // Loads one picture. If it fails (flaky network), tries again twice before giving up.
+    const loadImage = (
+      url: string,
+      asyncDecode: boolean,
+      done: (img: HTMLImageElement | null) => void,
+      attempt = 0
+    ) => {
+      const img = new Image();
+      if (asyncDecode) img.decoding = 'async';
+      img.onload = () => { if (!cancelled) done(img); };
+      img.onerror = () => {
+        if (cancelled) return;
+        if (attempt < 2) {
+          setTimeout(() => { if (!cancelled) loadImage(url, asyncDecode, done, attempt + 1); }, attempt === 0 ? 600 : 1500);
+        } else {
+          done(null);
         }
       };
-      const firstImg = new Image();
-      firstImg.src = currentFrame(1);
-      firstImg.onload = () => {
-        imagesRef.current[1] = firstImg;
-        setFirstFrameLoaded(true);
-        loadBatch(2);
+      img.src = url;
+    };
+
+    // Loads frames 2-192: the last frame and every 4th frame first (so scrolling works
+    // early), then the rest. Six at a time. When a frame arrives that is closer to where
+    // the page is currently scrolled than what is on screen, the canvas is redrawn.
+    const loadRemainingFrames = (frameUrl: (n: number) => string, asyncDecode: boolean) => {
+      const order: number[] = [192];
+      for (let i = 5; i <= 189; i += 4) order.push(i);
+      for (let i = 2; i < 192; i++) {
+        if ((i - 1) % 4 !== 0) order.push(i);
+      }
+      let head = 0;
+      const next = () => {
+        if (cancelled || head >= order.length) return;
+        const idx = order[head++];
+        loadImage(frameUrl(idx), asyncDecode, (img) => {
+          if (img) {
+            imagesRef.current[idx] = img;
+            const target = targetFrameRef.current;
+            const drawn = drawnFrameRef.current;
+            if (drawn !== 0 && Math.abs(idx - target) < Math.abs(drawn - target)) {
+              renderFrameRef.current(target);
+            }
+          }
+          next();
+        });
       };
-    }
+      for (let i = 0; i < 6; i++) next();
+    };
+
+    const runDesktopLoader = () => {
+      loadImage(desktopFrameUrl(1), false, (img) => {
+        if (img) {
+          imagesRef.current[1] = img;
+          setFirstFrameLoaded(true);
+        }
+        loadRemainingFrames(desktopFrameUrl, false);
+        if (!img) {
+          // Frame 1 never arrived: start the hero as soon as any other frame has.
+          const wait = window.setInterval(() => {
+            if (cancelled) { window.clearInterval(wait); return; }
+            if (imagesRef.current.some(Boolean)) { window.clearInterval(wait); setFirstFrameLoaded(true); }
+          }, 300);
+        }
+      });
+    };
 
     if (usePortrait) {
-      const currentFrame = (index: number) => `/hero-frames-mobile/mob-frame-${index.toString().padStart(3, '0')}.jpg`;
-      const firstImg = new Image();
-      firstImg.decoding = 'async';
-      firstImg.src = currentFrame(1);
-      
-      const loadPortraitFrames = () => {
-        const order: number[] = [];
-        for (let i = 5; i <= 189; i += 4) order.push(i);
-        order.push(192);
-        for (let i = 2; i < 192; i++) {
-          if ((i - 1) % 4 !== 0) order.push(i);
-        }
-        let head = 0;
-        let active = 0;
-        const next = () => {
-          if (head >= order.length) return;
-          const idx = order[head++];
-          active++;
-          const img = new Image();
-          img.decoding = 'async';
-          img.src = currentFrame(idx);
-          img.onload = () => { imagesRef.current[idx] = img; active--; next(); };
-          img.onerror = () => { active--; next(); };
-        };
-        for (let i = 0; i < 6; i++) next();
-      };
-
-      firstImg.onload = () => {
-        imagesRef.current[1] = firstImg;
+      loadImage(portraitFrameUrl(1), true, (img) => {
+        if (!img) { runDesktopLoader(); return; }
+        imagesRef.current[1] = img;
         setFirstFrameLoaded(true);
-        loadPortraitFrames();
-      };
-      firstImg.onerror = runDesktopLoader;
+        loadRemainingFrames(portraitFrameUrl, true);
+      });
     } else {
       runDesktopLoader();
     }
+
+    return () => { cancelled = true; };
   }, []);
 
   const renderFrame = (index: number) => {
@@ -91,6 +114,7 @@ const ScrollHero = () => {
     let targetIndex = Math.round(index);
     if (targetIndex < 1) targetIndex = 1;
     if (targetIndex > 192) targetIndex = 192;
+    targetFrameRef.current = targetIndex;
 
     // Nearest loaded frame fallback if not exact match
     if (!imagesRef.current[targetIndex]) {
@@ -102,6 +126,7 @@ const ScrollHero = () => {
     
     const img = imagesRef.current[targetIndex];
     if (!img) return;
+    drawnFrameRef.current = targetIndex;
 
     if (img.height > img.width) {
       const cssW = canvas.clientWidth;
@@ -204,6 +229,8 @@ const ScrollHero = () => {
       );
     }
   };
+
+  renderFrameRef.current = renderFrame;
 
   useEffect(() => {
     if (!firstFrameLoaded) return;
