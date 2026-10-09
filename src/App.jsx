@@ -287,9 +287,11 @@ export default function App() {
       scope: 'Interior Design, Space Planning, Turnkey Execution, Project Management, Furniture & Finishing',
       details: 'A premium commercial service centre highlighting bespoke furniture, modern space planning, and elegant ambient lighting.',
       images: [
-        '/tata-desk-hero.webp',
-        '/tata-lounge-chair.webp',
-        '/tata-executive-desk.webp'
+        '/tata-reception.webp',
+        '/tata-executive.webp',
+        '/tata-conference.webp',
+        '/tata-workstation.webp',
+        '/tata-telescope-chair.webp'
       ]
     }
   ];

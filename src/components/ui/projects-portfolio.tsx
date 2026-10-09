@@ -430,16 +430,16 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
                       <div style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(0,0,0,0.5)', padding: '8px', borderRadius: '50%', color: 'white' }}><Maximize2 size={16} /></div>
                     </motion.div>
 
-                    {/* Row 1: 50/50 split (Pink Lounge Chair & Executive Desk) */}
+                    {/* Image Grid */}
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                      {[1, 2].map((idx) => (
+                      {selectedProject.images.slice(1).map((img, idx) => (
                         <motion.div 
-                          key={idx} 
-                          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+                          key={idx + 1} 
+                          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + idx * 0.1 }}
                           style={{ width: '100%', height: '400px', borderRadius: '8px', overflow: 'hidden', cursor: 'zoom-in', position: 'relative' }}
-                          onClick={() => setLightboxImage(selectedProject.images[idx])}
+                          onClick={() => setLightboxImage(img)}
                         >
-                          <img src={selectedProject.images[idx]} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} alt="Tata Detail" />
+                          <img src={img} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }} onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'} alt="Tata Detail" />
                         </motion.div>
                       ))}
                     </div>
