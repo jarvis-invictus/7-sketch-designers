@@ -25,8 +25,8 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
         'Corporate, Hotels, Hospitals, Colleges, Industrial'
       ],
       linkText: 'Explore Architectural Service',
-      heroProjectId: 'suratwala',
-      relatedProjectIds: ['suratwala', 'gokarting'],
+      heroProjectId: 'gokarting',
+      relatedProjectIds: ['gokarting'],
       processText: 'This service drives Phase 1 (Architectural Briefing & Spatial Planning) and Phase 2 (3D Photorealistic Visualization & Moodboard) of our Execution Blueprint.',
       formValue: 'architectural'
     },
@@ -46,7 +46,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
       ],
       linkText: 'Explore PMC Scope',
       heroImageUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop',
-      relatedProjectIds: ['rr-heritage', 'suratwala', 'tata'],
+      relatedProjectIds: ['rr-heritage', 'tata'],
       processText: 'This service governs Phase 5 (On-Site PMC Audits & Handover) of our Execution Blueprint.',
       formValue: 'pmc'
     },

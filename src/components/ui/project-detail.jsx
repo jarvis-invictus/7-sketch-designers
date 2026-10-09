@@ -13,10 +13,6 @@ const getProjectContent = (id) => {
       overview: "Christ College approached us to design a Training Hall and Library that would serve as the intellectual heart of their campus. The goal was to create spaces that foster deep concentration, collaborative learning, and large-scale academic presentations without compromising on acoustic integrity.",
       approach: "The auditorium features state-of-the-art acoustic panelling and tiered ergonomic seating, designed to project sound clearly while keeping the audience comfortable during long sessions. In stark contrast, the adjoining library was crafted as a sanctuary of silence. We custom-built expansive bookshelves and integrated warm, focused lighting to reduce eye strain, paired with dedicated quiet study zones."
     },
-    'suratwala': {
-      overview: "The Suratwala Mark Plazzo stands as a premier commercial landmark in Hinjawadi, Pune. We were commissioned to execute a comprehensive interior fit-out that would appeal to high-end corporate tenants and retail businesses alike.",
-      approach: "Our architectural intervention focused on the common areas, escalator corridors, and model corporate offices. We utilized high-grade polished stone, seamless glass balustrades, and dynamic recessed lighting to create an atmosphere of expansive luxury. The spatial flow was optimized to handle dense crowds while maintaining a feeling of open, breathable corporate elegance."
-    },
     'pall': {
       overview: "Pall Corporations required a modern, highly functional head office that reflected their global corporate identity while providing a flexible, comfortable environment for their Pune-based workforce.",
       approach: "As the lead PMC and turnkey execution partner, we managed everything from space planning to final handover. The floorplan was divided into flexible workstation hubs, private executive suites, and collaborative client meeting rooms. We integrated smart lighting, advanced HVAC systems, and ergonomic furniture to ensure peak employee productivity and well-being."

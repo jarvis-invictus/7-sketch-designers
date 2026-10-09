@@ -84,7 +84,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
                   <img 
                     src={project.images[0]} 
                     alt={project.title} 
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 15%', transition: 'transform 0.5s ease' }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: project.imagePosition || 'center 15%', transition: 'transform 0.5s ease' }}
                     onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
                     onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
                   />
@@ -257,7 +257,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
                       style={{ width: '100%', backgroundColor: 'var(--card-neutral)', borderRadius: '12px', cursor: 'pointer', position: 'relative', display: 'flex', justifyContent: 'center' }}
                       onClick={() => setLightboxImage(selectedProject.images[0])}
                     >
-                      <img src={selectedProject.images[0]} style={{ width: '100%', height: 'auto', maxHeight: '550px', objectFit: 'cover', objectPosition: 'center 15%', borderRadius: '12px' }} alt="Hero" />
+                      <img src={selectedProject.images[0]} style={{ width: '100%', height: 'auto', maxHeight: '550px', objectFit: 'cover', objectPosition: selectedProject.imagePosition || 'center 15%', borderRadius: '12px' }} alt="Hero" />
                       <div style={{ position: 'absolute', top: 16, right: 16, background: 'rgba(0,0,0,0.5)', padding: '8px', borderRadius: '50%', color: 'white' }}><Maximize2 size={16} /></div>
                     </motion.div>
                     
@@ -484,7 +484,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
                         <img 
                           src={img} 
                           alt={`${selectedProject.title} - ${idx}`} 
-                          style={{ width: '100%', height: 'auto', borderRadius: '12px', objectFit: 'cover', objectPosition: 'center 15%' }} 
+                          style={{ width: '100%', height: 'auto', borderRadius: '12px', objectFit: 'cover', objectPosition: selectedProject.imagePosition || 'center 15%' }} 
                         />
                       </motion.div>
                     ))}
@@ -542,7 +542,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               src={lightboxImage}
               alt="Fullscreen view"
-              style={{ maxWidth: '100%', maxHeight: '90vh', objectFit: 'cover', objectPosition: 'center 15%', borderRadius: '4px', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' }}
+              style={{ maxWidth: '100%', maxHeight: '90vh', objectFit: 'cover', objectPosition: selectedProject?.imagePosition || 'center 15%', borderRadius: '4px', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' }}
               onClick={(e) => e.stopPropagation()} // Prevent closing when clicking image itself
             />
           </motion.div>

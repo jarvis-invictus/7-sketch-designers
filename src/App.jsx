@@ -208,21 +208,19 @@ export default function App() {
       ]
     },
     {
-      id: 'suratwala',
-      title: 'Suratwala Mark Plazzo',
-      category: 'Commercial Building',
-      type: 'Commercial Building',
-      scope: 'Interior Fit-out, Common Areas, Office Kitchen, Office Spaces',
-      details: 'A premium commercial fit-out featuring elegant fluted glass partitions, ergonomic open workspaces, and luxurious utility areas.',
+      id: 'majestic',
+      title: 'The Majestic Rental Boutique',
+      category: 'Retail Boutique',
+      type: 'Retail Boutique',
+      details: 'A rental boutique for clothes and jewellery, designed with arched display niches, softly lit jewellery shelves and warm gold accents.',
       images: [
-        '/suratwala-hallway.webp',
-        '/suratwala-workspace-wide.webp',
-        '/suratwala-workspace.webp',
-        '/suratwala-cabin-wide.webp',
-        '/suratwala-cabin-close.webp',
-        '/suratwala-straight-desk.webp',
-        '/suratwala-kitchen.webp'
-      ]
+        '/majestic-01.jpg',
+        '/majestic-02.jpg',
+        '/majestic-03.jpg',
+        '/majestic-04.jpg',
+        '/majestic-05.jpg'
+      ],
+      imagePosition: 'center top'
     },
     {
       id: 'pall',
