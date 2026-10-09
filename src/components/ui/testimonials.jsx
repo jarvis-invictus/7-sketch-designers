@@ -105,10 +105,10 @@ export default function Testimonials() {
               {selectedIndex + 1} / {testimonials.length}
             </div>
             <div className="flex gap-2">
-              <button onClick={scrollPrev} disabled={selectedIndex === 0} className="w-[44px] h-[44px] rounded-full border border-[var(--hairline)] flex items-center justify-center bg-[var(--page-cream)] disabled:opacity-50 transition-colors hover:bg-white">
+              <button aria-label="Previous testimonial" onClick={scrollPrev} disabled={selectedIndex === 0} className="w-[44px] h-[44px] rounded-full border border-[var(--hairline)] flex items-center justify-center bg-[var(--page-cream)] disabled:opacity-50 transition-colors hover:bg-white">
                 <ChevronLeft size={20} color="var(--walnut)" />
               </button>
-              <button onClick={scrollNext} disabled={selectedIndex === testimonials.length - 1} className="w-[44px] h-[44px] rounded-full border border-[var(--hairline)] flex items-center justify-center bg-[var(--page-cream)] disabled:opacity-50 transition-colors hover:bg-white">
+              <button aria-label="Next testimonial" onClick={scrollNext} disabled={selectedIndex === testimonials.length - 1} className="w-[44px] h-[44px] rounded-full border border-[var(--hairline)] flex items-center justify-center bg-[var(--page-cream)] disabled:opacity-50 transition-colors hover:bg-white">
                 <ChevronRight size={20} color="var(--walnut)" />
               </button>
             </div>

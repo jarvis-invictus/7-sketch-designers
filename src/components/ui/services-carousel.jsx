@@ -600,6 +600,7 @@ export default function ServicesCarousel({ navigateToService, projects = [] }) {
           }}>
             <button 
               onClick={() => setSelectedProject(null)}
+              aria-label="Close project"
               style={{
                 position: 'absolute',
                 top: '20px',

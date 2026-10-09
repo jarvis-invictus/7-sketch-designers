@@ -522,6 +522,8 @@ export default function App() {
         <div className="flex xl:hidden">
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
             style={{
               background: 'none',
               border: 'none',
@@ -858,6 +860,7 @@ export default function App() {
                 src="https://maps.google.com/maps?q=Office+No.+G-28,+Ground+Floor,+One+Mall,+Ravet%E2%80%93Aundh+BRT+Road,+Pune&t=&z=14&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
+                title="Map showing the 7 Sketch Designers office"
                 style={{ border: 0, minHeight: '100%' }} 
                 allowFullScreen="" 
                 loading="lazy" 
@@ -902,7 +905,7 @@ export default function App() {
               }} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <input name="name" type="text" placeholder="Your Full Name" required style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none' }} />
                 <input name="mobile" type="tel" placeholder="Mobile Number (+91)" required style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none' }} />
-                <select name="service" style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none', color: 'var(--walnut)' }}>
+                <select name="service" aria-label="Service you are interested in" style={{ background: 'var(--page-cream)', border: '1px solid var(--hairline)', padding: '14px', borderRadius: '14px', outline: 'none', color: 'var(--walnut)' }}>
                   <option value="Architectural Consultancy">Architectural Consultancy</option>
                   <option value="PMC Feasibility Audit">PMC Feasibility Audit</option>
                   <option value="Turnkey Commercial Fit-Out">Turnkey Commercial Fit-Out</option>
@@ -928,7 +931,7 @@ export default function App() {
               <p style={{ color: 'var(--stone-text)', fontSize: '14.5px', lineHeight: '1.6', marginBottom: '24px' }}>
                 Designing Spaces. Delivering Excellence.
               </p>
-              <a href="https://www.instagram.com/7sketchdesigners" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '40px', height: '40px', borderRadius: '50%', background: 'var(--walnut)', color: 'var(--page-cream)', textDecoration: 'none', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.background = 'var(--clay)'} onMouseLeave={(e) => e.currentTarget.style.background = 'var(--walnut)'}>
+              <a href="https://www.instagram.com/7sketchdesigners" target="_blank" rel="noreferrer" aria-label="7 Sketch Designers on Instagram" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '40px', height: '40px', borderRadius: '50%', background: 'var(--walnut)', color: 'var(--page-cream)', textDecoration: 'none', transition: 'background 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.background = 'var(--clay)'} onMouseLeave={(e) => e.currentTarget.style.background = 'var(--walnut)'}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -997,6 +1000,7 @@ export default function App() {
         href="https://wa.me/917517277477?text=Hi%207%20Sketch%20Designers,%20I%20would%20like%20to%20inquire%20about%20architectural/interior%20services."
         target="_blank"
         rel="noreferrer"
+        aria-label="Chat with 7 Sketch Designers on WhatsApp"
         className="fixed z-[99] bg-[#25D366] text-white rounded-full flex items-center justify-center shadow-[0_12px_28px_rgba(37,211,102,0.45)] no-underline w-[48px] h-[48px] right-[16px] bottom-[calc(16px+env(safe-area-inset-bottom))] md:w-[56px] md:h-[56px] md:right-[26px] md:bottom-[26px]"
         style={{
           opacity: currentView === 'home' ? fabOpacity : 1,

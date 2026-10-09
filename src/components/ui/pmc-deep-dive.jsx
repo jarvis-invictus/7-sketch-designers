@@ -15,11 +15,11 @@ function PmcCard({ col, idx }) {
       whileHover={{ y: -5, boxShadow: 'var(--shadow-hover)', transition: { delay: 0, duration: 0.3 } }}
     >
       <div className="flex flex-col">
-        <div className="flex items-center gap-3 mb-3 md:mb-[24px]">
+        <div className="flex flex-col items-start gap-2 md:flex-row md:items-center xl:gap-3 mb-3 md:mb-[24px]">
           <div className="flex-shrink-0 w-[32px] h-[32px] md:w-[44px] md:h-[44px] bg-[var(--page-cream)] rounded-[var(--radius-sm)] flex items-center justify-center border border-[var(--hairline)]">
             {React.cloneElement(col.icon, { className: "w-[16px] h-[16px] md:w-[20px] md:h-[20px]" })}
           </div>
-          <h3 className="text-[17px] font-semibold text-[var(--walnut)] m-0 leading-tight min-w-0 break-words">{col.title}</h3>
+          <h3 className="text-[16px] xl:text-[17px] font-semibold text-[var(--walnut)] m-0 leading-tight min-w-0 break-words">{col.title}</h3>
         </div>
         <ul className="list-none p-0 m-0 flex flex-col gap-[6px] md:gap-[14px]">
           {col.items.map((item, itemIdx) => (

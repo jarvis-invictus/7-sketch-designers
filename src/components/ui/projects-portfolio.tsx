@@ -65,7 +65,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
 
 
           {/* Grid Layout for Projects */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '32px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(350px, 100%), 1fr))', gap: '32px' }}>
             {projects.slice(0, 6).map((project) => (
               <div 
                 key={project.id} 
@@ -141,6 +141,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
             {hasPrev && (
               <button 
                 onClick={() => setSelectedProject(projects[currentIndex - 1])}
+                aria-label="Previous project"
                 style={{ position: 'absolute', left: '40px', top: '50%', transform: 'translateY(-50%)', background: 'var(--walnut)', color: 'white', border: 'none', borderRadius: '50%', width: '56px', height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 10001, boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}
               >
                 <ChevronLeft size={28} />
@@ -177,6 +178,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
               }}>
                 <button 
                   onClick={() => setSelectedProject(null)}
+                  aria-label="Close project"
                   style={{
                     position: 'absolute',
                     top: '24px',
@@ -497,6 +499,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
             {hasNext && (
               <button 
                 onClick={() => setSelectedProject(projects[currentIndex + 1])}
+                aria-label="Next project"
                 style={{ position: 'absolute', right: '40px', top: '50%', transform: 'translateY(-50%)', background: 'var(--walnut)', color: 'white', border: 'none', borderRadius: '50%', width: '56px', height: '56px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 10001, boxShadow: '0 10px 25px rgba(0,0,0,0.2)' }}
               >
                 <ChevronRight size={28} />
@@ -524,6 +527,7 @@ export default function ProjectsPortfolio({ projects = [], onProjectClick }) {
           >
             <button 
               onClick={() => setLightboxImage(null)}
+              aria-label="Close image"
               style={{
                 position: 'absolute', top: '24px', right: '24px',
                 background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)',
