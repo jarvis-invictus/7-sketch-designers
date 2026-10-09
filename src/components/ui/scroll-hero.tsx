@@ -24,7 +24,7 @@ const ScrollHero = () => {
 
     const pad = (n: number) => n.toString().padStart(3, '0');
     const desktopFrameUrl = (n: number) => `/hero-frames/ezgif-frame-${pad(n)}.jpg`;
-    const portraitFrameUrl = (n: number) => `/hero-frames-mobile/mob-frame-${pad(n)}.jpg`;
+    const portraitFrameUrl = (n: number) => `/hero-frames-mobile-webp/mob-frame-${pad(n)}.webp`;
 
     // Loads one picture. If it fails (flaky network), tries again twice before giving up.
     const loadImage = (
