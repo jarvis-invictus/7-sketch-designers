@@ -13,7 +13,7 @@ const ScrollHero = () => {
   const [firstFrameLoaded, setFirstFrameLoaded] = useState(false);
 
   useEffect(() => {
-    const frameCount = 180;
+    const frameCount = 192;
     const currentFrame = (index: number) => `/hero-frames/ezgif-frame-${index.toString().padStart(3, '0')}.jpg`;
 
     // Simple batch loading to avoid huge simultaneous network requests
@@ -60,13 +60,13 @@ const ScrollHero = () => {
 
     let targetIndex = Math.round(index);
     if (targetIndex < 1) targetIndex = 1;
-    if (targetIndex > 180) targetIndex = 180;
+    if (targetIndex > 192) targetIndex = 192;
 
     // Nearest loaded frame fallback if not exact match
     if (!imagesRef.current[targetIndex]) {
-      for (let i = 1; i < 180; i++) {
+      for (let i = 1; i < 192; i++) {
         if (targetIndex - i >= 1 && imagesRef.current[targetIndex - i]) { targetIndex -= i; break; }
-        if (targetIndex + i <= 180 && imagesRef.current[targetIndex + i]) { targetIndex += i; break; }
+        if (targetIndex + i <= 192 && imagesRef.current[targetIndex + i]) { targetIndex += i; break; }
       }
     }
     
@@ -149,7 +149,7 @@ const ScrollHero = () => {
   useEffect(() => {
     if (!firstFrameLoaded) return;
     
-    const frameCount = 180;
+    const frameCount = 192;
     const animationTarget = { frame: 1 };
     
     // Initial render
